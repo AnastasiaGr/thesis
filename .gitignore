@@ -11,6 +11,9 @@ TIMIT/
 ehthumbs.db
 Thumbs.db
 
+# Pycharm
+.idea/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
