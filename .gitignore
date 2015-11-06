@@ -1,3 +1,6 @@
+# TIMIT Ignores (Not fun to upload 1.5GB#
+TIMIT/
+
 # OS generated files #
 ######################
 .DS_Store
