@@ -8,6 +8,7 @@ echo "based on HTK Tutorial v3.4.1 and work from (C) Cantab Research"
 TIMIT=$HOME/Desktop/thesis/TIMIT/TIMIT/
 SAMPLES=$HOME/Desktop/thesis/HTK_Samples/
 WORK_DIR=HTK_TIMIT_PHN`echo $* | tr -d ' '`
+#mkdir -p $WORK_DIR
 
 NMIXMONO=20              # number of Gaussians per state in monophones
 NMIXTRI=20               # number of Gaussians per state in triphones
