@@ -18,7 +18,7 @@ NPASSPERMIX=4            # number of fwd/bwd passes per mixture increase
 TESTSET=coreTest         # set to "test" for full test set or "coreTest"
 KFLMAP=false             # set to true to addionally output KFL mapped scores
 
-exec >& logs/$0.log
+exec >& $0.log
 
 cd ${WORK_DIR}
 
