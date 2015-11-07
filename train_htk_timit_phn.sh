@@ -20,8 +20,10 @@ KFLMAP=false             # set to true to addionally output KFL mapped scores
 
 exec >& logs/$0.log
 
+cd ${WORK_DIR}
+
 echo "Started Preparing at `date`"
-cd $WORK_DIR
+
 
 # write the timit config used if using HTK MFCC
 #  cat <<"EOF" > config
