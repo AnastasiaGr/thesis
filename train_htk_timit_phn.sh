@@ -1,6 +1,6 @@
 #!/usr/bin/env bash -ex
 
-echo "Continuus speech recognition system trained using HTK on TIMIT corpus"
+echo "Continuous speech recognition system trained using HTK on TIMIT corpus"
 echo "Anastasia Grigoropoulou - 2015"
 echo "based on HTK Tutorial v3.4.1 and work from (C) Cantab Research"
 
@@ -25,7 +25,7 @@ cd ${WORK_DIR}
 echo "Started Preparing at `date`"
 
 
-# write the timit config used if using HTK MFCC
+## write the timit config used if using HTK MFCC
 #  cat <<"EOF" > config
 #SOURCEKIND     = WAVEFORM
 #SOURCEFORMAT   = NIST
@@ -46,44 +46,44 @@ echo "Started Preparing at `date`"
 #EOF
 
 
-## read the TIMIT disk and encode into acoustic features
-#for DIR in train test ; do
-#    # create a mirror of the TIMIT directory structure
-#    (cd ${TIMIT} ; find ${DIR} -type d) | xargs mkdir -p
+###  read the TIMIT disk and encode into acoustic features
+# for DIR in TRAIN TEST ; do
+## create a mirror of the TIMIT directory structure
+##   (cd ${TIMIT} ; find ${DIR} -type d) | xargs mkdir -p
+##
+##  # generate lists of files
+##    (cd $TIMIT ; find ${DIR} -type f -name S[IX]\*WAV) | sort > ${DIR}.WAV
+##    sed "s/WAV$/PHN/" $DIR.WAV > $DIR.PHN
+##    sed "s/WAV$/MFC/" $DIR.WAV > $DIR.SCP
+##    sed "s/WAV$/TXT/" $DIR.WAV > $DIR.TXT
+##
+###     generate the acoutic feature vectors
+##    paste $DIR.WAV $DIR.SCP | sed "s:^:$TIMIT:" > $DIR.convert
+##   HCopy -C config -S $DIR.convert
+##    rm -f $DIR.convert
+##
 #
-#    # generate lists of files
-#    (cd $TIMIT ; find ${DIR} -type f -name S[IX]\*WAV) | sort > ${DIR}.WAV
-#    sed "s/WAV$/PHN/" $DIR.WAV > $DIR.PHN
-#    sed "s/WAV$/MFC/" $DIR.WAV > $DIR.SCP
-#    sed "s/WAV$/TXT/" $DIR.WAV > $DIR.TXT
+##    # ax-h conflicts with HTK's triphone naming convention, so change it
+##    # also generate .txt files suitable for use in language modelling
+##    sed "s/.WAV$//" $DIR.WAV | while read base ; do
+##    sed 's/ ax-h$/ axh/' < $TIMIT/$base.PHN > $base.PHN
+##    egrep -v 'h#$' $base.PHN > $base.TXT
+##    done
 #
-#    # generate the acoutic feature vectors
-#    paste $DIR.WAV $DIR.SCP | sed "s:^:$TIMIT/:" > $DIR.convert
-#    HCopy -C config -S $DIR.convert
-#    rm -f $DIR.convert
-#
-#
-#    # ax-h conflicts with HTK's triphone naming convention, so change it
-#    # also generate .txt files suitable for use in language modelling
-#    sed "s/.WAV$//" $DIR.WAV | while read base ; do
-#    sed 's/ ax-h$/ axh/' < $TIMIT/$base.PHN > $base.PHN
-#    egrep -v 'h#$' $base.PHN > $base.TXT
-#    done
-#
-#    # create MLF
-#    HLEd -S $DIR.PHN -i ${DIR}Mono.mlf /dev/null
-#
-#    rm -f $DIR.WAV
+##    # create MLF
+##    HLEd -S $DIR.PHN -i ${DIR}Mono.mlf /dev/null
+##
+##    rm -f $DIR.WAV
 #done
 
 ## filter the main test set to get the core test set
-#FILTER='^test/dr./[mf](DAB0|WBT0|ELC0|TAS1|WEW0|PAS0|JMP0|LNT0|PKT0|LLL0|TLS0|JLM0|BPM0|KLT0|NLP0|CMJ0|JDH0|MGD0|GRT0|NJM0|DHC0|JLN0|PAM0|MLD0)/s[ix]'
-#egrep -i $FILTER test.SCP > coreTest.SCP
-#egrep -i $FILTER test.PHN > coreTest.PHN
+#FILTER='^TEST/DR./[mf](DAB0|WBT0|ELC0|TAS1|WEW0|PAS0|JMP0|LNT0|PKT0|LLL0|TLS0|JLM0|BPM0|KLT0|NLP0|CMJ0|JDH0|MGD0|GRT0|NJM0|DHC0|JLN0|PAM0|MLD0)/s[ix]'
+#egrep -i $FILTER TEST.SCP > coreTest.SCP
+#egrep -i $FILTER TEST.PHN > coreTest.PHN
 #HLEd -S coreTest.PHN -i coreTestMono.mlf /dev/null
 
 ## create list of monophones
-#find train -name \*PHN | xargs cat | awk '{print $3}' | sort -u > monophones
+#find TRAIN -name \*PHN | xargs cat | awk '{print $3}' | sort -u > monophones
 
 ## and derive the dictionary and the modified monophone list from the monophones
 #egrep -v h# monophones > monophones-h#   #-v inverts the matching to select lines that don't match
@@ -117,7 +117,7 @@ echo "Started Preparing at `date`"
 #echo proto > protolist
 #echo N | $SAMPLES/HTKDemo/MakeProtoHMMSet sim.pcf
 
-#HCompV $CONFIG -T 1 -m -S train.scp -f 0.01 -M . -o new proto
+#HCompV  -T 1 -m -S TRAIN.SCP -f 0.01 -M . -o new proto
 
 KFLCFG='-e n en -e aa ao -e ah ax-h -e ah ax -e ih ix -e l el -e sh zh -e uw ux -e er axr -e m em -e n nx -e ng eng -e hh hv -e pau pcl -e pau tcl -e pau kcl -e pau q -e pau bcl -e pau dcl -e pau gcl -e pau epi -e pau h#'
 
@@ -142,7 +142,7 @@ NEWDIR=mono-nmix$nmix-npass0
 #ALLOWXWRDEXP = TRUE
 #EOF
 
-OPT="$CONFIG -T 1 -m 0 -t 250 150 1000 -S train.SCP"
+OPT=" -T 1 -m 0 -t 250 150 1000 -S train.SCP"
 
 #echo Start training monophones at: `date`
 #
@@ -180,7 +180,7 @@ OPT="$CONFIG -T 1 -m 0 -t 250 150 1000 -S train.SCP"
 #
 #  # test models
 #  if [ $nmix -ge $MINTESTMONO ] ; then
-#    HVite $CONFIG -t 100 100 4000 -T 1 -H $NEWDIR/MMF -S $TESTSET.SCP -i $NEWDIR/recout.mlf -w outLatFile -p 0.0 -s 5.0 dict monophones
+#    HVite -t 100 100 4000 -T 1 -H $NEWDIR/MMF -S $TESTSET.SCP -i $NEWDIR/recout.mlf -w outLatFile -p 0.0 -s 5.0 dict monophones
 #    HResults -T 1 -e '???' h# -I ${TESTSET}Mono.mlf monophones $NEWDIR/recout.mlf
 #    if $KFLMAP ; then
 #      HResults -T 1 -e '???' h# $KFLCFG -I ${TESTSET}Mono.mlf monophones $NEWDIR/recout.mlf
@@ -316,7 +316,7 @@ NEWDIR=tri-nmix1-npass0c
 #
 #  # test models
 #  if [ $nmix -ge $MINTESTTRI ] ; then
-#    HVite $CONFIG -t 100 100 4000 -T 1 -C hvite.config -H $NEWDIR/MMF -S $TESTSET.SCP -i $NEWDIR/recout.mlf -w outLatFile -p 0.0 -s 5.0 dict tiedlist
+#    HVite -t 100 100 4000 -T 1 -C hvite.config -H $NEWDIR/MMF -S $TESTSET.SCP -i $NEWDIR/recout.mlf -w outLatFile -p 0.0 -s 5.0 dict tiedlist
 #    HResults -T 1 -e '???' h# -I ${TESTSET}Mono.mlf monophones $NEWDIR/recout.mlf
 #    if $KFLMAP ; then
 #      HResults -T 1 -e '???' h# $KFLCFG -I ${TESTSET}Mono.mlf monophones $NEWDIR/recout.mlf
