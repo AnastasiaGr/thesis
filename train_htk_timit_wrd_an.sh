@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 echo "============================================================================"
 echo "== Word-level speech recognition system trained using HTK on TIMIT corpus =="
@@ -7,9 +7,8 @@ echo "==========================================================================
 
 
 # Setting up the paths
-#TIMIT=$HOME/Desktop/thesis/TIMIT/TIMIT/     # TIMIT Corpus burnt from CD
-TIMIT=C:/Users/Anastasia/Desktop/TIMIT/TIMIT/
-SAMPLES=C:/Users/Anastasia/Desktop/HTK_Samples/   # HTK Samples folder from http://htk.eng.cam.ac.uk/
+TIMIT=$HOME/Desktop/thesis/TIMIT/TIMIT/     # TIMIT Corpus burnt from CD
+SAMPLES=$HOME/Desktop/HTK_Samples/   # HTK Samples folder from http://htk.eng.cam.ac.uk/
 WORK_DIR=HTK_TIMIT_WRD                      # Working directory for particular script
 
 if [ ! -d ${WORK_DIR} ]; then               # If working directory doesn't exist, create it !
