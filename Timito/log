@@ -1,0 +1,61 @@
+WARNING: no script file global.ded
+
+Dictionary Usage Statistics
+---------------------------
+  Dictionary    TotalWords WordsUsed  TotalProns PronsUsed
+timit_dict.t      6226       4894       6235       4903
+train_dict.t      4894       4894       4903       4903
+
+4894 words required, 0 missing
+
+New Phone Usage Counts
+---------------------
+  1. ax    :  1031
+  2. m     :   835
+  3. sp    :  4903
+  4. sil   :     1
+  5. b     :   556
+  6. r     :  1430
+  7. iy    :  1020
+  8. v     :   440
+  9. ey    :   530
+ 10. t     :  1898
+ 11. ay    :   475
+ 12. d     :  1269
+ 13. z     :   930
+ 14. ih    :  1319
+ 15. l     :  1299
+ 16. ix    :  1157
+ 17. el    :   304
+ 18. aa    :   484
+ 19. sh    :   357
+ 20. ae    :   729
+ 21. axr   :   651
+ 22. jh    :   245
+ 23. n     :  1669
+ 24. aw    :   129
+ 25. ah    :   390
+ 26. p     :   891
+ 27. s     :  1774
+ 28. uw    :   353
+ 29. ao    :   378
+ 30. er    :   251
+ 31. k     :  1287
+ 32. eh    :   732
+ 33. ng    :   403
+ 34. y     :   204
+ 35. ch    :   161
+ 36. w     :   309
+ 37. hh    :   257
+ 38. f     :   522
+ 39. ow    :   394
+ 40. g     :   348
+ 41. dh    :    72
+ 42. uh    :   147
+ 43. oy    :    62
+ 44. th    :   120
+ 45. en    :    65
+ 46. em    :    20
+ 47. zh    :    28
+
+Dictionary train_dict.txt created
