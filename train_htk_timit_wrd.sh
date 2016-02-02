@@ -5,12 +5,12 @@ echo "== Word-level speech recognition system trained using HTK on TIMIT corpus 
 echo "==                    Anastasia Grigoropoulou - 2015                      =="
 echo "============================================================================"
 
-
-# Setting up the paths
+# Setting up the path variables
 PROJECT=$HOME/Desktop/thesis/
 CONFIG=${PROJECT}/configs/
 SCRIPT=${PROJECT}/scripts/
 DICT=${PROJECT}/dicts/
+LOG=${PROJECT}/logs/
 TIMIT=${PROJECT}/TIMIT/TIMIT/               # TIMIT Corpus burnt from CD
 SAMPLES=${PROJECT}/HTK_Samples/             # HTK Samples folder from http://htk.eng.cam.ac.uk/
 WORK_DIR=${PROJECT}/HTK_TIMIT_WRD           # Working directory for particular script
@@ -23,8 +23,6 @@ NMIXMONO=20              # number of Gaussians per state in monophones
 NMIXTRI=20               # number of Gaussians per state in triphones
 NPASSPERMIX=4            # number of fwd/bwd passes per mixture increase
 TESTSET=coreTEST         # set to "test" for full test set or "coreTest"
-
-cd ${WORK_DIR}
 
 #echo "Started Preparing at `date`" >> log
 
@@ -69,31 +67,12 @@ cd ${WORK_DIR}
 #mv TRAINmonophones monophones
 #rm TESTmonophones
 
-#echo 'Generating a template for a prototype model' >> log
-#cat <<"EOF" > sim.pcf
-#<BEGINproto_config_file>
-#<COMMENT>
-#   This PCF produces a single mixture, single stream prototype system
-#<BEGINsys_setup>
-#hsKind: P
-#covKind: D
-#nStates: 3
-#nStreams: 1
-#sWidths: 39
-#mixes: 1
-#parmKind: MFCC_E_D_A_Z
-#vecSize: 39
-#outDir: .
-#hmmList: protolist
-#<ENDsys_setup>
-#<ENDproto_config_file>
-#EOF
-#
+#echo 'Generating a prototype model' >> log
+
 ## generate a prototype model
 #echo proto > protolist
 #echo N | ../scripts/MakeProtoHMMSet sim.pcf >> log
 #rm protolist
-#rm sim.pcf
 
 if [ ! -d HMM/hmm0/hmmdefs ]; then               # If working directory doesn't exist, create it !
     mkdir -p HMM/hmm0/hmmdefs
@@ -113,13 +92,6 @@ fi
 #echo 'Figuring out the global variance with HCompV' >> log
 #HCompV -A -T 1 -f 0.01 -m -S TRAIN.SCP -M HMM/hmm1/ -I TRAINMono.mlf proto >> log
 #rm -f HMM/hmm1/proto
-
-#echo 'Generating macros file' >> log
-#cat <<"EOF" > macros
-#~o
-#<STREAMINFO> 1 39
-#<VECSIZE> 39<NULLD><MFCC_E_D_A_Z><DIAGC>
-#EOF
 
 #echo 'Concatenating prototype models to build a starting definition file' >> log
 nmix=1
