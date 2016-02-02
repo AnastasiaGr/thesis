@@ -1,6 +1,6 @@
 # TIMIT Ignores (Not fun to upload 1.5GB#
 TIMIT/
-HTK_TIMIT_PHN/
+HTK_TIMIT_WRD_an/
 
 # OS generated files #
 ######################
