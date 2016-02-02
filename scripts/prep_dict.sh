@@ -6,7 +6,7 @@
 # it was downloaded from http://www.speech.cs.cmu.edu/cgi-bin/cmudict, version 0.7b
 # and subsequently renamed to cmu.txt
 #
-# NOTE: Had to fix a lint in cmu.txt with unrecognizable characters!
+# NOTE: Had to fix a line in cmu.txt with unrecognizable characters!
 #
 # Copyright 2016 by Anastasia Grigoropoulou
 

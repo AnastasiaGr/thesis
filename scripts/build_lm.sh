@@ -34,8 +34,8 @@ rm -f dict_temp
 echo "A" > prompts_wlist
 
 # Generate wordlist from the ones the HLEd used to create the MLFs
-cat ${WORKDIR}/TRAINwordlist ${WORKDIR}/TESTwordlist > mlf_wlist
-rm -f TRAINwordlist TESTwordlist
+cat ${DICT}/TRAINwordlist ${DICT}/TESTwordlist > mlf_wlist
+rm -f ${DICT}/TRAINwordlist ${DICT}/TRAINwordlist
 
 (cat prompts_wlist mlf_wlist) | sort -u > wordlist_temp
 (tr '[:lower:]' '[:upper:]' < wordlist_temp) | sort -u > ${DICT}/wordlist

@@ -14,58 +14,29 @@ LOG=${PROJECT}/logs/
 TIMIT=${PROJECT}/TIMIT/TIMIT/               # TIMIT Corpus burnt from CD
 SAMPLES=${PROJECT}/HTK_Samples/             # HTK Samples folder from http://htk.eng.cam.ac.uk/
 WORK_DIR=${PROJECT}/HTK_TIMIT_WRD           # Working directory for particular script
-
 if [ ! -d ${WORK_DIR} ]; then               # If working directory doesn't exist, create it !
     mkdir -p ${WORK_DIR}
 fi
 
+# Setting up project variables
 NMIXMONO=20              # number of Gaussians per state in monophones
 NMIXTRI=20               # number of Gaussians per state in triphones
 NPASSPERMIX=4            # number of fwd/bwd passes per mixture increase
 TESTSET=coreTEST         # set to "test" for full test set or "coreTest"
 
-#echo "Started Preparing at `date`" >> log
+# Code the audio files to MFCC feature vectors and create MLF files for training
+#echo "Generating MFCC feature vectors and creating training and test MLF files ..."
+#source ${SCRIPT}/prep_timit.sh
 
-##  read the TIMIT disk and encode into acoustic features
-#for DIR in TRAIN TEST ; do
-#    # create a mirror of the TIMIT directory structure
-#   (cd ${TIMIT} ; find ${DIR} -type d) | xargs mkdir -p
-#
-#    # generate lists of files
-#    (cd ${TIMIT} ; find ${DIR} -type f -name S[IX]\*WAV) | sort > ${DIR}.WAV
-#    sed "s/WAV$/PHN/" ${DIR}.WAV > ${DIR}.PHN
-#    sed "s/WAV$/WRD/" ${DIR}.WAV > ${DIR}.WRD
-#    sed "s/WAV$/MFC/" ${DIR}.WAV > ${DIR}.SCP
-#    sed "s/WAV$/TXT/" ${DIR}.WAV > ${DIR}.TXT
-#
-#    echo 'Generate the acoutic feature vectors' >> log
-#    paste ${DIR}.WAV ${DIR}.SCP | sed "s:^:${TIMIT}:" > ${DIR}.convert
-#    HCopy -A -T 1 -C configNIST -S ${DIR}.convert >> log
-#    rm -f ${DIR}.convert
-#
-#
-#    # Generate .txt files suitable for use in language modelling
-#    sed "s/.WAV$//" ${DIR}.WAV | while read base ; do
-#    cp ${TIMIT}/${base}.PHN ${base}.PHN
-#    cp ${TIMIT}/${base}.WRD ${base}.WRD
-#    egrep -v 'h#$' ${base}.PHN > ${base}.TXT
-#    done
-#
-#    echo 'Create phone level MLF' >> log
-#    HLEd -A -T 1 -D -n monophones -S ${DIR}.PHN -G TIMIT -i ${DIR}Mono.mlf monotimit.led >> log
-#    sort monophones > ${DIR}monophones
-#    echo 'Create words level MLF' >> log
-#    HLEd -A -T 1 -D -n wordlist -S ${DIR}.WRD -G TIMIT -i ${DIR}Word.mlf /dev/null >> log
-#    sort wordlist | sed "s/'em/\\\'em/" > ${DIR}wordlist
-#
-#    rm -f ${DIR}.WAV
-#    rm -f monophones
-#    rm -f wordlist
-#done
+# We need to massage the CMU and TIMIT dictionaries for our use and then merge them
+#echo "Preparing the joint TIMIT and cmu dictionary ..."
+#source ${SCRIPT}/prep_dict.sh
 
-## Only need one monophones list, made sure it's the same
-#mv TRAINmonophones monophones
-#rm TESTmonophones
+# Initial setup of language model and working dictionary
+#echo "Building language models and working dictionary..."
+#source ${SCRIPT}/build_lm.sh
+
+
 
 #echo 'Generating a prototype model' >> log
 
@@ -74,12 +45,12 @@ TESTSET=coreTEST         # set to "test" for full test set or "coreTest"
 #echo N | ../scripts/MakeProtoHMMSet sim.pcf >> log
 #rm protolist
 
-if [ ! -d HMM/hmm0/hmmdefs ]; then               # If working directory doesn't exist, create it !
-    mkdir -p HMM/hmm0/hmmdefs
-fi
-if [ ! -d HMM/hmm1/hmmdefs ]; then               # If working directory doesn't exist, create it !
-    mkdir -p HMM/hmm1/hmmdefs
-fi
+#if [ ! -d HMM/hmm0/hmmdefs ]; then
+#    mkdir -p HMM/hmm0/hmmdefs
+#fi
+#if [ ! -d HMM/hmm1/hmmdefs ]; then
+#    mkdir -p HMM/hmm1/hmmdefs
+#fi
 
 #echo 'Starting initial hmms for each monophone with HInit' >> log
 #
@@ -170,10 +141,6 @@ OPT=" -A -T 1 -m 3 -t 250.0 150.0 1000.0 -S TRAIN.SCP"
 #    HResults -A -T 1 -I ${TESTSET}Mono.mlf monophones ${DIR}/phn_recout.mlf >> log.results
 #done
 
-#cat <<"EOF" > merge_sp.led
-#ME sp sp sp
-#EOF
-
 #echo Adding sp to TIMIT PHNs >> log.train_sp
 #perl ../AddSpToTimit.pl TRAIN.PHN PHN_SP
 #perl ../AddSpToTimit.pl TEST.PHN PHN_SP
@@ -188,19 +155,8 @@ OPT=" -A -T 1 -m 3 -t 250.0 150.0 1000.0 -S TRAIN.SCP"
 OLDDIR=HMM/mono-nmix1-npass${NPASSPERMIX}
 NEWDIR=HMM/mono_sp-nmix1-npass0
 #mkdir -p ${NEWDIR}
-#
-#echo Fixing silence model hmm >> log.train_sp
-#cat <<EOF > sil.hed
-#AT 2 4 0.2 {sil.transP}
-#AT 4 2 0.2 {sil.transP}
-#AT 2 4 0.2 {sp.transP}
-#AT 4 2 0.2 {sp.transP}
-#AT 1 5 0.3 {sp.transP}
-#TI silst2 {sil.state[2],sp.state[2]}
-#TI silst3 {sil.state[3],sp.state[3]}
-#TI silst4 {sil.state[4],sp.state[4]}
-#EOF
-#
+
+
 #perl ../DuplicateSilence.pl ${OLDDIR}/MMF > temp.MMF
 #HHEd -A -T 1 -H temp.MMF -M ${NEWDIR} sil.hed monophones_sp >> log.train_sp
 #mv ${NEWDIR}/temp.MMF ${NEWDIR}/MMF
@@ -252,9 +208,6 @@ NEWDIR=HMM/mono_sp-nmix1-npass0
 #    HVite -A -T 1 -H ${DIR}/MMF -S ${TESTSET}.SCP -i ${DIR}/phn_recout.mlf -w wdnet_monophones -p 1.0 -s 4.0 dict_monophones monophones >> log.eval_sp
 #    HResults -A -T 1 -I ${TESTSET}Mono.mlf monophones_sp ${DIR}/phn_recout.mlf >> log.results
 #done
-
-source ${SCRIPT}/prep_dict.sh
-source ${SCRIPT}/build_lm.sh
 
 #echo align monophone models using word mlf >> log.aligned
 #HVite -A -T 1 -o SWT -b SILENCE -a -H HMM/mono_sp-nmix1-npass4/MMF -i TRAINaligned.mlf -m -t 250.0 -I TRAINWord.mlf -S TRAIN.SCP dict_words_sil monophones_sp >> log.aligned
@@ -631,7 +584,7 @@ OPTTIE=" -B -A -T 1 -m 0 -t 250.0 150.0 1000.0 -S TRAIN.SCP"
 #ALLOWXWRDEXP = TRUE
 #EOF
 
-echo Testing tied list triphone HMM\'s on coreTest data, phn output at: `date` >> log.eval_tri
+#echo Testing tied list triphone HMM\'s on coreTest data, phn output at: `date` >> log.eval_tri
 
 #for nmix in 1 2 4 6 8 10 12 14 16 18 20 ; do
 for nmix in 1 2 4 6 8 10 12 14 16 18 20 ; do
