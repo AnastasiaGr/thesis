@@ -1,0 +1,12 @@
+HResults -A -T 1 -t thras/tiedlist thras/recout_SX223M.mlf 
+Aligned transcription: Mytest_Matlab/SX223M.lab vs Mytest_Matlab/SX223M.rec
+ LAB: put the  butcher block table    in  the    garage  
+ REC:     path then    dutch attacked any bedlam caution 
+====================== HTK Results Analysis =======================
+  Date: Tue Feb  2 12:01:26 2016
+  Ref : 
+  Rec : thras/recout_SX223M.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=0.00, Acc=0.00 [H=0, D=1, S=7, I=0, N=8]
+===================================================================

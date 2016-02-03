@@ -7,19 +7,11 @@ echo "==========================================================================
 
 # Setting up the path variables
 PROJECT=$HOME/Desktop/thesis
-CONFIG=${PROJECT}/configs
 SCRIPT=${PROJECT}/scripts
-DICT=${PROJECT}/dicts
-LOG=${PROJECT}/logs
-LMODEL=${PROJECT}/models
-TIMIT=${PROJECT}/TIMIT/TIMIT             # TIMIT Corpus burnt from CD
-SAMPLES=${PROJECT}/HTK_Samples             # HTK Samples folder from http://htk.eng.cam.ac.uk/
 WORKDIR=${PROJECT}/HTK_TIMIT_WRD           # Working directory for particular script
 if [ ! -d ${WORKDIR} ]; then               # If working directory doesn't exist, create it !
     mkdir -p ${WORKDIR}
 fi
-HMM=${WORKDIR}/HMM
-
 
 # Code the audio files to MFCC feature vectors and create MLF files for training
 #echo "Generating MFCC feature vectors and creating training and test MLF files ..."
@@ -50,33 +42,9 @@ HMM=${WORKDIR}/HMM
 #echo "Training tied triphones models..."
 #source ${SCRIPT}/train_tri.sh
 
-
-
-## HVITE needs to be told to perform cross word context expansion
-#cat <<"EOF" > configCROSS
-#FORCECXTEXP = TRUE
-#ALLOWXWRDEXP = TRUE
-#EOF
-
-#echo Testing tied list triphone HMM\'s on coreTest data, phn output at: `date` >> log.eval_tri
-
-#for nmix in 1 2 4 6 8 10 12 14 16 18 20 ; do
-for nmix in 1 2 4 6 8 10 12 14 16 18 20 ; do
-    DIR=HMM/tri-nmix${nmix}-npass4
-#    HVite -A -T 1 -t 250.0 -C configCROSS -H ${DIR}/MMF -S ${TESTSET}.SCP -i ${DIR}/phn_recout.mlf -w wdnet_bigram -p -1.0 -s 4.0 dict_train tiedlist >> log.eval_tri
-#    HResults -A -T 1 -I ${TESTSET}Word.mlf tiedlist ${DIR}/phn_recout.mlf >> log.results
-done
-
-## Expand dict to triphones
-#cat << EOF > tritimit.ded
-#TC
-#EOF
-#
-#HDMan -g tritimit.ded -l tridict.log TIMIT3dict TIMITdict
-#echo "!ENTER	[] sil" >> TIMIT3dict
-#echo "!EXIT	[] sil" >> TIMIT3dict
-
-# and recognize with -s
-# and fix wdnet_monophones to have !ENTER !EXIT
+# Evaluate the models (takes a long time !)
+#echo "Evaluating models..."
+#source ${SCRIPT}/eval_mono.sh
+#source ${SCRIPT}/eval_tri.sh
 
 exit 0

@@ -1,0 +1,12 @@
+HResults -A -T 1 -t thras/tiedlist thras/recout_SI943M.mlf 
+Aligned transcription: Mytest_Matlab/SI943M.lab vs Mytest_Matlab/SI943M.rec
+ LAB:                  production may   fall  far below  expectations 
+ REC: wood action leaf an         fight dough al  expect ocean's      
+====================== HTK Results Analysis =======================
+  Date: Tue Feb  2 12:40:11 2016
+  Ref : 
+  Rec : thras/recout_SI943M.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=0.00, Acc=-50.00 [H=0, D=0, S=6, I=3, N=6]
+===================================================================

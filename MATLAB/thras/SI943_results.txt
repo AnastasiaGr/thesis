@@ -1,0 +1,12 @@
+HResults -A -T 1 -t tiedlist SI943_recout.mlf 
+Aligned transcription: SI943.lab vs SI943.rec
+ LAB:        production may  fall far below                expectations 
+ REC: prayed action     knee fall far below expect patient it's         
+====================== HTK Results Analysis =======================
+  Date: Tue Feb  2 01:22:58 2016
+  Ref : 
+  Rec : SI943_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=50.00, Acc=0.00 [H=3, D=0, S=3, I=3, N=6]
+===================================================================

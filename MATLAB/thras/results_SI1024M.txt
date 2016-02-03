@@ -1,0 +1,12 @@
+HResults -A -T 1 -t thras/tiedlist thras/recout_SI1024M.mlf 
+Aligned transcription: Mytest_Matlab/SI1024M.lab vs Mytest_Matlab/SI1024M.rec
+ LAB: at the base of   the    rocky  hillside they left their horses and      climbed on foot 
+ REC: at the      pace attack they'd aside    they left       alice  whizzing climbed on foot 
+====================== HTK Results Analysis =======================
+  Date: Tue Feb  2 11:57:03 2016
+  Ref : 
+  Rec : thras/recout_SI1024M.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=46.67, Acc=46.67 [H=7, D=2, S=6, I=0, N=15]
+===================================================================
