@@ -26,15 +26,15 @@ TESTSET=coreTEST         # set to "test" for full test set or "coreTest"
 
 # Code the audio files to MFCC feature vectors and create MLF files for training
 #echo "Generating MFCC feature vectors and creating training and test MLF files ..."
-source ${SCRIPT}/prep_timit.sh
+#source ${SCRIPT}/prep_timit.sh
 
 # We need to massage the CMU and TIMIT dictionaries for our use and then merge them
 #echo "Preparing the joint TIMIT and cmu dictionary ..."
-source ${SCRIPT}/prep_dict.sh
+#source ${SCRIPT}/prep_dict.sh
 
 # Initial setup of language model and working dictionary
 #echo "Building language models and working dictionary..."
-source ${SCRIPT}/build_lm.sh
+#source ${SCRIPT}/build_lm.sh
 
 
 

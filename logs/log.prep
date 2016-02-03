@@ -1,5 +1,5 @@
-Started Preparing at Tue Feb  2 00:55:43 EST 2016
-Generate the acoutic feature vectors
+Started Preparing at Tue Feb  2 19:49:41 EST 2016
+Generate the acoustic feature vectors
 HCopy -A -T 1 -C /Users/thrakar9/Desktop/thesis/configs/configNIST -S TRAIN.convert 
 /Users/thrakar9/Desktop/thesis/TIMIT/TIMIT/TRAIN/DR1/FCJF0/SI1027.WAV -> 
     TRAIN/DR1/FCJF0/SI1027.MFC 
@@ -22172,7 +22172,7 @@ Editing file: /Users/thrakar9/Desktop/thesis/TIMIT/TIMIT/TRAIN/DR8/MTCS0/SX82.WR
 
 No HTK Configuration Parameters Set
 
-Generate the acoutic feature vectors
+Generate the acoustic feature vectors
 HCopy -A -T 1 -C /Users/thrakar9/Desktop/thesis/configs/configNIST -S TEST.convert 
 /Users/thrakar9/Desktop/thesis/TIMIT/TIMIT/TEST/DR1/FAKS0/SI1573.WAV -> 
     TEST/DR1/FAKS0/SI1573.MFC 

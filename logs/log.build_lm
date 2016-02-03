@@ -1,0 +1,187 @@
+HDMAn -A -T 1 -g /Users/thrakar9/Desktop/thesis/configs/add_sp.ded /Users/thrakar9/Desktop/thesis/dicts/cmu_timit_dict_sp /Users/thrakar9/Desktop/thesis/dicts/cmu_timit_dict 
+Output dictionary /Users/thrakar9/Desktop/thesis/dicts/cmu_timit_dict_sp opened 
+Source dictionary /Users/thrakar9/Desktop/thesis/dicts/cmu_timit_dict opened 
+Dictionary /Users/thrakar9/Desktop/thesis/dicts/cmu_timit_dict_sp created - 124946 words processed, 0 missing
+HDMAn -A -T 1 -w /Users/thrakar9/Desktop/thesis/dicts/wordlist -l log dict_temp /Users/thrakar9/Desktop/thesis/dicts/cmu_timit_dict_sp 
+Output dictionary dict_temp opened 
+Source dictionary /Users/thrakar9/Desktop/thesis/dicts/cmu_timit_dict_sp opened 
+Dictionary dict_temp created - 6100 words processed, 0 missing
+LNewMap -A -T 1 -f WFC TIMIT /Users/thrakar9/Desktop/thesis/models/empty.wmap 
+LGPrep -A -T 1 -a 100000 -b 200000 -d /Users/thrakar9/Desktop/thesis/models/text0 -n 4 -s Timit prompts /Users/thrakar9/Desktop/thesis/models/empty.wmap /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/abbey_grange.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/beryl_coronet.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/black_peter.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/blue_carbuncle.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/boscombe_valley.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/bruce-partington_plans.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/cardboard_box.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/case_of_identity.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/charles_agustus_milverton.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/copper_beeches.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/crooked_man.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/dancing_men.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/devils_foot.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/dying_detective.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/empty_house.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/engineers_thumb.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/final_problem.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/five_orange_pips.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/gloria_scott.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/golden_pince-nez.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/greek_interpreter.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/his_last_bow.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/hound_of_baskervilles.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/lady_frances_carfax.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/man_with_twisted_lip.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/missing_three-quarter.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/musgrave_ritual.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/naval_treaty.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/noble_bachelor.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/norwood_builder.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/preface.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/priory_school.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/red_circle.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/reigate_puzzle.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/resident_patient.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/scandal_in_bohemia.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/secondain.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/sign_of_four.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/silver_blaze.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/six_napoleons.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/solitary_cyclist.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/speckled_band.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/stock_brokers_clerk.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/study_in_scarlet.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/threeudents.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/valley_of_fear.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/wisteria_lodge.txt /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/yellow_face.txt 
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/abbey_grange.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/beryl_coronet.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/black_peter.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/blue_carbuncle.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/boscombe_valley.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/bruce-partington_plans.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/cardboard_box.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/case_of_identity.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/charles_agustus_milverton.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/copper_beeches.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/crooked_man.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/dancing_men.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/devils_foot.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/dying_detective.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/empty_house.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/engineers_thumb.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/final_problem.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/five_orange_pips.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/gloria_scott.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/golden_pince-nez.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/greek_interpreter.txt
+ saving 177485 ngrams to file /Users/thrakar9/Desktop/thesis/models/text0/gram.0
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/his_last_bow.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/hound_of_baskervilles.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/lady_frances_carfax.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/man_with_twisted_lip.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/missing_three-quarter.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/musgrave_ritual.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/naval_treaty.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/noble_bachelor.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/norwood_builder.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/preface.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/priory_school.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/red_circle.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/reigate_puzzle.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/resident_patient.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/scandal_in_bohemia.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/secondain.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/sign_of_four.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/silver_blaze.txt
+ saving 177557 ngrams to file /Users/thrakar9/Desktop/thesis/models/text0/gram.1
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/six_napoleons.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/solitary_cyclist.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/speckled_band.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/stock_brokers_clerk.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/study_in_scarlet.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/threeudents.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/valley_of_fear.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/wisteria_lodge.txt
+Reading source text file /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/train/yellow_face.txt
+ word map saved to /Users/thrakar9/Desktop/thesis/models/text0/wmap
+ saving 165674 ngrams to file /Users/thrakar9/Desktop/thesis/models/text0/gram.2
+ 584422 words processed
+Input file /Users/thrakar9/Desktop/thesis/models/text0/gram.0 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text0/gram.1 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text0/gram.2 added, weight=1.0000
+Copying 3 input files to output files with 200000 entries
+ saving 200000 ngrams to file /Users/thrakar9/Desktop/thesis/models/text1/data.0
+ saving 200000 ngrams to file /Users/thrakar9/Desktop/thesis/models/text1/data.1
+ saving 89516 ngrams to file /Users/thrakar9/Desktop/thesis/models/text1/data.2
+489516 out of 489516 ngrams stored in 3 files
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.0 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.1 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.2 added, weight=1.0000
+Calculating FoF table
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.0 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.1 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.2 added, weight=1.0000
+3811 distinct unigrams found in data, 6103 in word list
+2292 unigrams floored to 1.0
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.0 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.1 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.2 added, weight=1.0000
+g[1]=0.486666
+g[2]=0.693090
+g[3]=0.766645
+g[4]=0.808361
+g[5]=0.834783
+g[6]=0.908580
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.0 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.1 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.2 added, weight=1.0000
+g[1]=0.486666
+g[2]=0.693090
+g[3]=0.766645
+g[4]=0.808361
+g[5]=0.834783
+g[6]=0.908580
+g[1]=0.257000
+g[2]=0.531433
+g[3]=0.645618
+g[4]=0.740204
+g[5]=0.768025
+g[6]=0.853047
+LPlex test #0: 2-gram
+perplexity 104.4893, var 7.4243, utterances 556, words predicted 7421
+num tokens 10408, OOV 1351, OOV rate 13.71% (excl. </s>)
+
+Access statistics for /Users/thrakar9/Desktop/thesis/models/timit_lm/tg:
+Lang model  requested  exact backed    n/a     mean    stdev
+    bigram       7421  79.6%  18.6%   1.8%    -4.65     2.72
+   trigram          0   0.0%   0.0%   0.0%     0.00     0.00
+LPlex test #1: 3-gram
+perplexity 92.2327, var 8.5351, utterances 556, words predicted 6645
+num tokens 10408, OOV 1351, OOV rate 13.71% (excl. </s>)
+
+Access statistics for /Users/thrakar9/Desktop/thesis/models/timit_lm/tg:
+Lang model  requested  exact backed    n/a     mean    stdev
+    bigram       4292  68.0%  29.2%   2.8%    -5.45     2.90
+   trigram       6645  35.4%  29.0%  35.6%    -4.52     2.92
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.0 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.1 added, weight=1.0000
+Input file /Users/thrakar9/Desktop/thesis/models/text1/data.2 added, weight=1.0000
+Calculating discount coefficients
+g[1]=0.486666
+g[2]=0.693090
+g[3]=0.766645
+g[4]=0.808361
+g[5]=0.834783
+g[6]=0.908580
+2-gram coefs:
+coef[1]=0.000000e+00
+coef[2]=6.426266e-01
+coef[3]=7.282761e-01
+coef[4]=7.768509e-01
+coef[5]=8.076168e-01
+coef[6]=8.935483e-01
+coef[7]=8.726493e-01
+g[1]=0.257000
+g[2]=0.531433
+g[3]=0.645618
+g[4]=0.740204
+g[5]=0.768025
+g[6]=0.853047
+3-gram coefs:
+coef[1]=0.000000e+00
+coef[2]=5.146081e-01
+coef[3]=6.328933e-01
+coef[4]=7.308751e-01
+coef[5]=7.596958e-01
+coef[6]=8.477699e-01
+coef[7]=8.038003e-01
+Calculating 1-grams
+3811 distinct unigrams found in data, 6103 in word list
+2292 unigrams floored to 1.0
+Calculating 2-grams
+Calculating 3-grams
+Loading language model from /Users/thrakar9/Desktop/thesis/models/timit_lm/tgc
+Using language model(s): 
+  3-gram /Users/thrakar9/Desktop/thesis/models/timit_lm/tgc, weight 1.00
+Found 6103 unique words in 1 model(s)
+LPlex test #0: 3-gram
+Processing text stream: /Users/thrakar9/Desktop/thesis/HTK_Samples/LMTutorial/test/red-headed_league.txt
+perplexity 104.1884, var 8.1552, utterances 556, words predicted 8501
+num tokens 10408, OOV 1351, OOV rate 13.71% (excl. </s>)
+
+Access statistics for /Users/thrakar9/Desktop/thesis/models/timit_lm/tgc:
+Lang model  requested  exact backed    n/a     mean    stdev
+    bigram       6502  55.4%  24.7%  19.9%    -5.25     2.80
+   trigram       8501  23.5%  20.9%  55.5%    -4.65     2.86
+HLMCopy -A -T 1 -f TEXT /Users/thrakar9/Desktop/thesis/models/timit_lm/tgc /Users/thrakar9/Desktop/thesis/models/timit_lm/rtg 
+Loaded model from /Users/thrakar9/Desktop/thesis/models/timit_lm/tgc
+Wrote model to /Users/thrakar9/Desktop/thesis/models/timit_lm/rtg
+Reading bigram from file /Users/thrakar9/Desktop/thesis/models/timit_lm/ug
+Converting back-off bigram -> lattice
+Saving lattice to file /Users/thrakar9/Desktop/thesis/models/timit_lm/wdnet_ug
+HLStats -A -T 1 -b /Users/thrakar9/Desktop/thesis/models/mlf/bigfn -o -s <s> </s> -I /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/TRAINWord.mlf /Users/thrakar9/Desktop/thesis/dicts/wordlist 
+Computing Bigram Statistics
+  unifloor = 1.000000
+  bgthresh = 0
+  discount = 0.500000
+
+
+Read Label list - 6102/6102 labels
+Reading bigram from file /Users/thrakar9/Desktop/thesis/models/mlf/bigfn
+Converting back-off bigram -> lattice
+Saving lattice to file /Users/thrakar9/Desktop/thesis/models/mlf/wdnet_bigram
