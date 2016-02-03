@@ -60,9 +60,11 @@ echo "</s>" >> wl_temp
 sort -u wl_temp > ${DICT}/wordlist
 rm -f wl_temp
 
+sed 's/sp//' ${DICT}/dict > ${DICT}/dict_no_sp
+
 # The HTK tools maintain a cumulative word map to which every new word is added and assigned a unique id.
 # This means that you can add future $ n$-gram files without having to rebuild existing ones so long as you start
-# from the same word map, thus ensuring that each id remains unique. The side effect of this ability is that LGPREP
+# from the same word map, thus ensuring that each id remains unique. The side effect of this ability is that LGPrep
 # always expects to be given a word map, so to prepare the first $ n$-gram file (also referred to elsewhere as a `gram'
 # file) you must pass an empty word map file.
 
@@ -108,3 +110,10 @@ HLStats -A -T 1 -b ${LMODEL}/mlf/bigfn -o -s '<s>' '</s>' -I ${WORKDIR}/TRAINWor
 
 HBuild -T 1 -n ${LMODEL}/mlf/bigfn -u '!!UNK' -s '<s>' '</s>' -z ${DICT}/wordlist ${LMODEL}/mlf/wdnet_bigram >> ${LOG}/log.build_lm
 
+# Building a phoneme language model used for phoneme based recognition
+
+# First create a dictionary where each word is a monophone
+paste ${WORKDIR}/monophones ${WORKDIR}/monophones > ${DICT}/dict_monophones
+
+# and then build phone-word network.
+HBuild -A -T 1 ${WORKDIR}/monophones ${LMODEL}/mlf/wdnet_monophones

@@ -16,9 +16,10 @@ TIMIT=${PROJECT}/TIMIT/TIMIT              # TIMIT Corpus burnt from CD
 SAMPLES=${PROJECT}/HTK_Samples            # HTK Samples folder from http://htk.eng.cam.ac.uk/
 WORK_DIR=${PROJECT}/HTK_TIMIT_WRD         # Working directory for particular script
 
-echo "Started Preparing at `date`" > ${LOG}/log.prep
-
 cd ${WORK_DIR}
+
+
+echo "Started Preparing at `date`" > ${LOG}/log.prep
 
 #  Read the TIMIT disk and encode into acoustic features
 for DIR in TRAIN TEST ; do
@@ -55,3 +56,35 @@ done
 # Only need one monophones list, made sure it's the same
 mv TRAINmonophones monophones
 rm -f TESTmonophones
+
+# Create a monophones list that includes sp
+cat monophones > monophones_sp
+echo "sp" >> monophones_sp
+
+
+# Filter the main test set to get the a subset of it used for testing in case coreTEST is True
+# generate lists of files
+(cd ${TIMIT} ; find TEST -type f -name S[IX]\*WAV) | sort > TEST.x
+sed "s/WAV$/PHN/" TEST.x > TEST.PHN
+sed "s/WAV$/WRD/" TEST.x > TEST.WRD
+FILTER='^TEST/DR./[mf](DAB0|WBT0|ELC0|TAS1|WEW0|PAS0|JMP0|LNT0|PKT0|LLL0|TLS0|JLM0|BPM0|KLT0|NLP0|CMJ0|JDH0|MGD0|GRT0|NJM0|DHC0|JLN0|PAM0|MLD0)/s[ix]'
+egrep -i ${FILTER} TEST.MFC > coreTEST.MFC
+egrep -i ${FILTER} TEST.PHN > coreTEST.px
+egrep -i ${FILTER} TEST.WRD > coreTEST.wx
+sed "s:^:${TIMIT}/:" coreTEST.px > coreTEST.PHN
+sed "s:^:${TIMIT}/:" coreTEST.wx > coreTEST.WRD
+HLEd -S coreTEST.PHN -G TIMIT -l '*' -i coreTESTMono.mlf ${CONFIG}/monotimit.led
+HLEd -S coreTEST.WRD -G TIMIT -l '*' -i coreTESTWord.mlf /dev/null
+rm -f TEST.x TEST.PHN TEST.WRD coreTEST.PHN coreTEST.WRD coreTEST.px coreTEST.wx
+
+tr '[:lower:]' '[:upper:]' < TRAINWord.mlf > TRAINWord.x
+sed 's/\.LAB/\.lab/' TRAINWord.x > TRAINWord.mlf
+rm -f TRAINWord.x
+
+tr '[:lower:]' '[:upper:]' < TESTWord.mlf > TESTWord.x
+sed 's/\.LAB/\.lab/' TESTWord.x > TESTWord.mlf
+rm -f TESTWord.x
+
+tr '[:lower:]' '[:upper:]' < coreTESTWord.mlf > coreTESTWord.x
+sed 's/\.LAB/\.lab/' coreTESTWord.x > coreTESTWord.mlf
+rm -f coreTESTWord.x
