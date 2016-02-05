@@ -1,0 +1,14 @@
+sh eval_tri.sh 1 &
+sh eval_tri.sh 2 &
+sh eval_tri.sh 4 &
+sh eval_tri.sh 6 &
+sh eval_tri.sh 8 &
+sh eval_tri.sh 10 &
+sh eval_tri.sh 12 &
+sh eval_tri.sh 14 &
+sh eval_tri.sh 16 &
+sh eval_tri.sh 18 &
+sh eval_tri.sh 20 &
+
+
+
