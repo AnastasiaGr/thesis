@@ -24,32 +24,18 @@ cd ${WORKDIR}
 
 echo "RESULTS" > ${LOG}/log.results_tri
 
-#echo Testing tied list triphone HMM\'s on coreTest data, phn output at: `date` >> log.eval_tri
-nmix=20
-#for nmix in 1 2 4 6 8 10 12 14 16 18 20 ; do
+echo Testing tied list triphone HMM\'s on coreTest data, phn output at: `date` >> log.eval_tri
+for nmix in $1 ; do
     DIR=HMM/hmm13/tri-nmix${nmix}-npass4
-#    HVite -A -T 1 -H ${DIR}/MMF -S ${TESTSET}.MFC -i ${DIR}/phn_recout.mlf -w ${LMODEL}/mlf/wdnet_monophones -t 250.0 -p 1.0 -s 4.0 ${DICT}/dict_monophones tiedlist #>> ${LOG}/log.eval_tri
-#    HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}.MFC -i ${DIR}/wrd_recout.mlf -w ${LMODEL}/mlf/wdnet_bigram -t 250.0 -p 1.0 -s 4.0 ${DICT}/dict tiedlist  #>> ${LOG}/log.eval_tri
-#    HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}.MFC -i ${DIR}/wrd_lm_recout.mlf -w ${LMODEL}/timit_lm/wdnet_ug -t 250.0 -p 1.0 -s 4.0 ${DICT}/dict tiedlist # >> ${LOG}/log.eval_tri
-#done
+    HVite -A -T 1 -H ${DIR}/MMF -S ${TESTSET}.MFC -i ${DIR}/phn_recout.mlf -w ${LMODEL}/mlf/wdnet_monophones -t 250.0 -p 1.0 -s 4.0 ${DICT}/dict_monophones tiedlist >> ${LOG}/log.eval_tri
+    HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}.MFC -i ${DIR}/wrd_recout.mlf -w ${LMODEL}/mlf/wdnet_bigram -t 250.0 -p 1.0 -s 4.0 ${DICT}/dict tiedlist  >> ${LOG}/log.eval_tri
+    HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}.MFC -i ${DIR}/wrd_lm_recout.mlf -w ${LMODEL}/timit_lm/wdnet_ug -t 250.0 -p 1.0 -s 4.0 ${DICT}/dict tiedlist >> ${LOG}/log.eval_tri
+done
 
-#for nmix in 1 2 4 6 8 10 12 14 16 18 20 ; do
-#    DIR=${HMM}/hmm13/tri-nmix${nmix}-npass4
-#    HResults -A -T 1 -I ${TESTSET}Mono.mlf tiedlist ${DIR}/phn_recout.mlf  # >> ${LOG}/log.results_tri
-#    HResults -A -T 1 -c -I ${TESTSET}Word.mlf tiedlist ${DIR}/wrd_recout.mlf  >> ${LOG}/log.results_tri
-#    HResults -A -T 1 -c -I ${TESTSET}Word.mlf tiedlist ${DIR}/wrd_lm_recout.mlf  >> ${LOG}/log.results_tri
-#done
+for nmix in 1 2 4 6 8 10 12 14 16 18 20 ; do
+    DIR=${HMM}/hmm13/tri-nmix${nmix}-npass4
+    HResults -A -T 1 -I ${TESTSET}Mono.mlf tiedlist ${DIR}/phn_recout.mlf   >> ${LOG}/log.results_tri
+    HResults -A -T 1 -c -I ${TESTSET}Word.mlf tiedlist ${DIR}/wrd_recout.mlf  >> ${LOG}/log.results_tri
+    HResults -A -T 1 -c -I ${TESTSET}Word.mlf tiedlist ${DIR}/wrd_lm_recout.mlf  >> ${LOG}/log.results_tri
+done
 
-
-
-## Expand dict to triphones
-#cat << EOF > tritimit.ded
-#TC
-#EOF
-#
-#HDMan -g tritimit.ded -l tridict.log TIMIT3dict TIMITdict
-#echo "!ENTER	[] sil" >> TIMIT3dict
-#echo "!EXIT	[] sil" >> TIMIT3dict
-
-# and recognize with -s
-# and fix wdnet_monophones to have !ENTER !EXIT
