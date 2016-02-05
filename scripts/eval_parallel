@@ -9,6 +9,9 @@ sh eval_tri.sh 14 &
 sh eval_tri.sh 16 &
 sh eval_tri.sh 18 &
 sh eval_tri.sh 20 &
-
+sh eval_last.sh 22 &
+sh eval_last.sh 24 &
+sh eval_last.sh 28 &
+sh eval_last.sh 32 &
 
 
