@@ -39,16 +39,16 @@ DIR=HMM/hmm62/tri-nmix28-npass4
 
 for p in -0.0 ; do
     for s in 12.0 12.5 13.0 13.5 14.0 14.5 15.0 15.5 16.0 16.5 17.0 ; do
-        HResults -A -T 1 -I ${TESTSET}1Mono.mlf tiedlist ${DIR}/phn_${p}_${s}_recout.mlf   >> ${LOG}/log.results_tri
-        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tri
-        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tri
+        HResults -A -T 1 -I ${TESTSET}1Mono.mlf tiedlist ${DIR}/phn_${p}_${s}_recout.mlf   >> ${LOG}/log.results_tune
+        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
+        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
     done
 done
 
 for p in -2.0 -4.0 -6.0 -8.0 -10.0 ; do
     for s in 12.0 13.0 14.0 15.0 16.0 17.0  ; do
-        HResults -A -T 1 -I ${TESTSET}1Mono.mlf tiedlist ${DIR}/phn_${p}_${s}_recout.mlf   >> ${LOG}/log.results_tri
-        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tri
-        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tri
+        HResults -A -T 1 -I ${TESTSET}1Mono.mlf tiedlist ${DIR}/phn_${p}_${s}_recout.mlf   >> ${LOG}/log.results_tune
+        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
+        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
     done
 done
