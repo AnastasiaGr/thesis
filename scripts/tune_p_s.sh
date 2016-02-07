@@ -23,32 +23,17 @@ TESTSET=coreTEST         # set to "test" for full test set or "coreTest"
 
 cd ${WORKDIR}
 
-echo "RESULTS" > ${LOG}/log.results_tune
 
-#echo Testing tied list triphone best HMM on coreTest data, phn output at: `date` >> log.eval_tune
+echo Testing tied list triphone best HMM on coreTest data, phn output at: `date` >> log.eval_tune
 
 DIR=HMM/hmm62/tri-nmix28-npass4
 
-#for p in $1 ; do
-#    for s in $2 ; do
-#        HVite -A -T 1 -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/phn_${p}_${s}_recout.mlf -w ${LMODEL}/mlf/wdnet_monophones -t 250.0 -p ${p} -s ${s} ${DICT}/dict_monophones tiedlist >> ${LOG}/log.eval_tune
-#        HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/wrd_${p}_${s}_recout.mlf -w ${LMODEL}/mlf/wdnet_bigram -t 250.0 -p ${p} -s ${s} ${DICT}/dict tiedlist  >> ${LOG}/log.eval_tune
-#        HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/wrd_lm_${p}_${s}_recout.mlf -w ${LMODEL}/timit_lm/wdnet_ug -t 250.0 -p ${p} -s ${s} ${DICT}/dict tiedlist >> ${LOG}/log.eval_tune
-#    done
-#done
-
-for p in -0.0 ; do
-    for s in 12.0 12.5 13.0 13.5 14.0 14.5 15.0 15.5 16.0 16.5 17.0 ; do
-        HResults -A -T 1 -I ${TESTSET}1Mono.mlf tiedlist ${DIR}/phn_${p}_${s}_recout.mlf   >> ${LOG}/log.results_tune
-        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
-        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
+for p in $1 ; do
+    for s in $2 ; do
+        HVite -A -T 1 -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/phn_${p}_${s}_recout.mlf -w ${LMODEL}/mlf/wdnet_monophones -t 250.0 -p ${p} -s ${s} ${DICT}/dict_monophones tiedlist >> ${LOG}/log.eval_tune
+        HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/wrd_${p}_${s}_recout.mlf -w ${LMODEL}/mlf/wdnet_bigram -t 250.0 -p ${p} -s ${s} ${DICT}/dict tiedlist  >> ${LOG}/log.eval_tune
+        HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/wrd_lm_${p}_${s}_recout.mlf -w ${LMODEL}/timit_lm/wdnet_ug -t 250.0 -p ${p} -s ${s} ${DICT}/dict tiedlist >> ${LOG}/log.eval_tune
     done
 done
 
-for p in -2.0 -4.0 -6.0 -8.0 -10.0 ; do
-    for s in 12.0 13.0 14.0 15.0 16.0 17.0  ; do
-        HResults -A -T 1 -I ${TESTSET}1Mono.mlf tiedlist ${DIR}/phn_${p}_${s}_recout.mlf   >> ${LOG}/log.results_tune
-        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
-        HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
-    done
-done
+
