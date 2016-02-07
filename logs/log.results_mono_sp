@@ -1,0 +1,298 @@
+Results......
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix1-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:30 2016
+  Ref : coreTESTMono.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix1-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=41.62, Acc=33.97 [H=2574, D=986, S=2624, I=473, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix1-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:30 2016
+  Ref : coreTESTWord.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix1-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=8.92, Acc=2.48 [H=140, D=206, S=1224, I=101, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix1-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:30 2016
+  Ref : coreTESTWord.mlf
+  Rec : >top/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix1-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=14.78, Acc=-11.97 [H=232, D=80, S=1258, I=420, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix2-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:30 2016
+  Ref : coreTESTMono.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix2-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=51.79, Acc=45.80 [H=3203, D=776, S=2205, I=371, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix2-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:30 2016
+  Ref : coreTESTWord.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix2-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=23.50, Acc=15.92 [H=369, D=186, S=1015, I=119, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix2-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:30 2016
+  Ref : coreTESTWord.mlf
+  Rec : >top/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix2-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.52 [H=1, S=191, N=192]
+WORD: %Corr=27.58, Acc=4.97 [H=433, D=62, S=1075, I=355, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix4-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix4-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=56.11, Acc=51.36 [H=3470, D=711, S=2003, I=294, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix4-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix4-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=27.64, Acc=20.38 [H=434, D=174, S=962, I=114, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix4-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >top/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix4-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.52 [H=1, S=191, N=192]
+WORD: %Corr=32.36, Acc=11.72 [H=508, D=68, S=994, I=324, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix6-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix6-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=58.94, Acc=54.24 [H=3645, D=675, S=1864, I=291, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix6-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix6-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.04 [H=2, S=190, N=192]
+WORD: %Corr=29.43, Acc=23.18 [H=462, D=170, S=938, I=98, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix6-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >top/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix6-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=2.08 [H=4, S=188, N=192]
+WORD: %Corr=36.24, Acc=16.62 [H=569, D=57, S=944, I=308, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix8-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix8-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=60.09, Acc=55.97 [H=3716, D=639, S=1829, I=255, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix8-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >esktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix8-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.04 [H=2, S=190, N=192]
+WORD: %Corr=33.25, Acc=28.03 [H=522, D=155, S=893, I=82, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix8-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >top/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix8-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.56 [H=3, S=189, N=192]
+WORD: %Corr=38.28, Acc=20.13 [H=601, D=65, S=904, I=285, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix10-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix10-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=61.98, Acc=58.09 [H=3833, D=622, S=1729, I=241, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix10-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix10-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=2.08 [H=4, S=188, N=192]
+WORD: %Corr=36.50, Acc=30.57 [H=573, D=151, S=846, I=93, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix10-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >op/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix10-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.52 [H=1, S=191, N=192]
+WORD: %Corr=39.87, Acc=21.66 [H=626, D=61, S=883, I=286, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix12-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix12-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=62.84, Acc=59.02 [H=3886, D=611, S=1687, I=236, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix12-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix12-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.04 [H=2, S=190, N=192]
+WORD: %Corr=35.99, Acc=29.81 [H=565, D=150, S=855, I=97, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix12-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >op/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix12-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.04 [H=2, S=190, N=192]
+WORD: %Corr=39.94, Acc=21.91 [H=627, D=67, S=876, I=283, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix14-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix14-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=63.26, Acc=59.35 [H=3912, D=614, S=1658, I=242, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix14-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix14-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.56 [H=3, S=189, N=192]
+WORD: %Corr=36.11, Acc=29.68 [H=567, D=152, S=851, I=101, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix14-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >op/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix14-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.04 [H=2, S=190, N=192]
+WORD: %Corr=41.27, Acc=23.25 [H=648, D=58, S=864, I=283, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix16-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix16-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=63.57, Acc=59.83 [H=3931, D=606, S=1647, I=231, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix16-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix16-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.56 [H=3, S=189, N=192]
+WORD: %Corr=37.26, Acc=30.57 [H=585, D=154, S=831, I=105, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix16-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >op/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix16-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.04 [H=2, S=190, N=192]
+WORD: %Corr=41.21, Acc=22.68 [H=647, D=55, S=868, I=291, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix18-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix18-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=64.02, Acc=60.43 [H=3959, D=584, S=1641, I=222, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix18-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix18-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=2.08 [H=4, S=188, N=192]
+WORD: %Corr=37.77, Acc=31.02 [H=593, D=150, S=827, I=106, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix18-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >op/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix18-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.04 [H=2, S=190, N=192]
+WORD: %Corr=41.46, Acc=23.06 [H=651, D=61, S=858, I=289, N=1570]
+===================================================================
+HResults -A -T 1 -I coreTESTMono.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix20-npass4/phn_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTMono.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix20-npass4/phn_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=192, N=192]
+WORD: %Corr=63.97, Acc=60.32 [H=3956, D=600, S=1628, I=226, N=6184]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix20-npass4/wrd_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >sktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix20-npass4/wrd_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.56 [H=3, S=189, N=192]
+WORD: %Corr=38.22, Acc=31.53 [H=600, D=150, S=820, I=105, N=1570]
+===================================================================
+HResults -A -T 1 -c -I coreTESTWord.mlf monophones /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix20-npass4/wrd_lm_recout.mlf 
+====================== HTK Results Analysis =======================
+  Date: Sun Feb  7 16:20:31 2016
+  Ref : coreTESTWord.mlf
+  Rec : >op/thesis/HTK_TIMIT_WRD/HMM/hmm5/mono-nmix20-npass4/wrd_lm_recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=1.04 [H=2, S=190, N=192]
+WORD: %Corr=41.08, Acc=22.68 [H=645, D=67, S=858, I=289, N=1570]
+===================================================================
