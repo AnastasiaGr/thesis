@@ -81,21 +81,6 @@ wavwrite(wav2,fs,'SI1024M.WAV');
 Reference https://www.physicsforums.com/threads/matlab-using-wavwrite-to-create-a-single-audio-file.189093/
 %% adding extra noise awgn1
 
-clear all;
-clc;
-load('filters.mat');
-
-%load the input signals
-traindir = 'matlab_examples/'; 
-nFiles = 2;
-s = [];
- 
-[y1,fs] = read_NIST_file('matlab_examples/SI1024.WAV');
-size_1 = length(y1);
- 
-[y2,fs] = read_NIST_file('matlab_examples/SX223.WAV');
-size_2 = length(y2);
-s=zeros(2,max(size_1,size_2));
 z1 = awgn(y1,10,'measured');
 z2 = awgn(y2,10,'measured');
 %z1=y1+2*(rand(length(y1),1)-.5))
@@ -150,21 +135,6 @@ wavwrite(wav2,fs,'SX223M_AWGN1.WAV');
 
 %% adding extra noise awgn2
 
-clear all;
-clc;
-load('filters.mat');
-
-%load the input signals
-traindir = 'matlab_examples/'; 
-nFiles = 2;
-s = [];
- 
-[y1,fs] = read_NIST_file('matlab_examples/SI1024.WAV');
-size_1 = length(y1);
- 
-[y2,fs] = read_NIST_file('matlab_examples/SX223.WAV');
-size_2 = length(y2);
-s=zeros(2,max(size_1,size_2));
 z1 = awgn(y1,5,'measured');
 z2 = awgn(y2,5,'measured');
 %z1=y1+2*(rand(length(y1),1)-.5))
