@@ -123,9 +123,25 @@ for k=1:size(SNR,2)
 end
 
 %% Recognize the un-mixed signals with the best HTK recognizer
+outputs = struct2cell(dir('Outputs'));
+files = outputs(1,3:end);
 
+system('PROJECT=$HOME/Desktop/thesis');
+system('CONFIG=${PROJECT}/configs');
+system('WORKDIR=${PROJECT}/HTK_TIMIT_WRD');
+system('HMM=${WORKDIR}/HMM');
+system('DIR=HMM/hmm62/tri-nmix28-npass4');
+system('DICT=${PROJECT}/dicts');
+system('LMODEL=${PROJECT}/models');
+
+system('cd Outputs');
+for i=1:size(files,2)
+    system(strcat('HCopy -A -T 1 -C ${CONFIG}/configMATLAB ',files{i}))
+end
 % config
-
-
-        %HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
-        %HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
+       %HVite -A -T 1 -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/phn_${p}_${s}_recout.mlf -w ${LMODEL}/mlf/wdnet_monophones -t 250.0 -p ${p} -s ${s} ${DICT}/dict_monophones tiedlist >> ${LOG}/log.eval_tune
+       % HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/wrd_${p}_${s}_recout.mlf -w ${LMODEL}/mlf/wdnet_bigram -t 250.0 -p ${p} -s ${s} ${DICT}/dict tiedlist  >> ${LOG}/log.eval_tune
+       % HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/wrd_lm_${p}_${s}_recout.mlf -w ${LMODEL}/timit_lm/wdnet_ug -t 250.0 -p ${p} -s ${s} ${DICT}/dict tiedlist >> ${LOG}/log.eval_tune
+ 
+        %HResults -A -T 1 -c tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
+        %HResults -A -T 1 -c tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
