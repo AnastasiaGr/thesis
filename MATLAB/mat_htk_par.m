@@ -5,6 +5,7 @@
 clear;
 clc;
 load('legacy/filters.mat');
+addpath('FastICA');
 % Set up directories
 HOME = '../';
 WORKDIR = strcat(HOME,'HTK_TIMIT_WRD/');
@@ -29,164 +30,94 @@ end
 s = zeros(nFiles,max(cellfun('length',inputs)));
 
 for i=1:nFiles
-    s(i,1:size(inputs{i},2)) = inputs{i};
+    s(i,1:size(inputs{i},2)) = zscore(inputs{i});
 end
-
-%% without extra noise
- 
+t = 1/fs:1/fs:size(s,2)/fs;
 %plot the input signals
-inputs = figure;
-subplot(2,1,1); plot(s(1,:)),grid on, title('signal_1'), xlabel('t (msec)'); % plot s1
-subplot(2,1,2); plot(s(2,:), 'r'),grid on, title('signal_2'), xlabel('t (msec)'); % plot s2
+figure('color','white');
+subplot(2,1,1); plot(t,s(1,:)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
+subplot(2,1,2); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
 
+%% Mixing without extra noise
 
-%create the mixing table and mix the signals
- A=[0.5 0.3; 0.8 0.9];  
- x=[];
+% create the mixing table and mix the signals
+A=[0.5 0.3; 0.8 0.9];  
+x=[];
 for i=1:nFiles
    x=A*s;
 end
 
-%hear the mixed signals
-sound(x(1,:),fs);
-sound(x(2,:),fs);
+% %hear the mixed signals
+% sound(x(1,:),fs);
+% sound(x(2,:),fs);
 
 % plot the mixed signals
-figure;
-plot(x(1,:),'r');
-hold on
-plot(x(2,:),'b');
-hold off;
+figure('color','white');
+subplot(4,1,1); plot(t,s(1,:)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
+subplot(4,1,2); plot(t,x(1,:)),grid on, title('Mixed Signal 1'), xlabel('t (sec)'); % plot x1
+subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
+subplot(4,1,4); plot(t,x(2,:), 'r'),grid on, title('Mixed Signal 2'), xlabel('t (sec)'); % plot x2
 
 %implementation of the fastica algorithm
 c=fastica([x(1,:);x(2,:)]); 
 
-%hear the independent components of the fastica algorithm
-sound(c(1,:),fs);
-sound(c(2,:),fs);
+% %hear the independent components of the fastica algorithm
+% sound(c(1,:),fs);
+% sound(c(2,:),fs);
 
 %plot the independent components of the fastica algorithm
-figure;
-subplot(2,1,1); plot(c(1,:)), grid on,title('signal_1'), xlabel('t (msec)');
-subplot(2,1,2); plot(c(2,:),'r'), grid on, title('signal_2'), xlabel('t (msec)');
+figure('color','white');
+subplot(4,1,1); plot(t,s(1,:)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
+subplot(4,1,2); plot(t,c(1,:)),grid on, title('ICA Signal 1'), xlabel('t (sec)'); % plot x1
+subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
+subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title('ICA Signal 2'), xlabel('t (sec)'); % plot x2
 
-wav1=c(1,:)
-wav2=c(2,:)
-
-
-audiowrite('fir.wav',wav1,fs);
-wavwrite(wav1,fs,'SI943M.WAV');
-wavwrite(wav2,fs,'SI1024M.WAV');
-
-Reference https://www.physicsforums.com/threads/matlab-using-wavwrite-to-create-a-single-audio-file.189093/
-%% adding extra noise awgn1
-
-z1 = awgn(y1,10,'measured');
-z2 = awgn(y2,10,'measured');
-%z1=y1+2*(rand(length(y1),1)-.5))
-s(1,1:size_1) = z1;
-s(2,1:size_2) = z2;
-
-% hear the input signals
-sound(s(1,:),fs);
-sound(s(2,:),fs);
-
-%plot the input signals
-figure;
-subplot(2,1,1); plot(s(1,:)),grid on, title('signal_1'), xlabel('t (msec)'); % plot s1
-subplot(2,1,2); plot(s(2,:), 'r'),grid on, title('signal_2'), xlabel('t (msec)'); % plot s2
- 
-%create the mixing table and mix the signals
- A=[0.5 0.3; 0.8 0.9];  
- x=[];
-for i=1:nFiles
-   x=A*s;
+for i=1:size(c,1)
+    audiowrite(sprintf('Outputs/%d.wav',i),c(i,:),fs);
 end
 
-%hear the mixed signals
-sound(x(1,:),fs);
-sound(x(2,:),fs);
+%% Mixing adding white gaussian noise with specified SNR.
 
-% plot the mixed signals
-figure;
-plot(x(1,:),'r');
-hold on
-plot(x(2,:),'b');
-hold off;
+SNR = [1,5,10];
 
-%implementation of the fastica algorithm
-c=fastica([x(1,:);x(2,:)]); 
+for k=1:size(SNR,2)
+    z(1,:) = awgn(s(1,:),SNR(k),'measured');
+    z(2,:) = awgn(s(2,:),SNR(k),'measured');
 
-%hear the independent components of the fastica algorithm
-sound(c(1,:),fs);
-sound(c(2,:),fs);
+    % % hear the input signals
+    % sound(z1,fs);
+    % sound(z2,fs);
 
-%plot the independent components of the fastica algorithm
-figure;
-subplot(2,1,1); plot(c(1,:)), grid on,title('signal_1'), xlabel('t (msec)');
-subplot(2,1,2); plot(c(2,:),'r'), grid on, title('signal_2'), xlabel('t (msec)');
+    %plot the input signals
+    figure('color','white');
+    subplot(4,1,1); plot(t(fs:2*fs),s(1,fs:2*fs)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
+    subplot(4,1,2); plot(t(fs:2*fs),z(1,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x1
+    subplot(4,1,3); plot(t(fs:2*fs),s(2,fs:2*fs)),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
+    subplot(4,1,4); plot(t(fs:2*fs),z(2,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x2
 
-wav1=c(1,:)
-wav2=c(2,:)
+    %create the mixing table and mix the signals
+     A=[0.5 0.3; 0.8 0.9];  
+     x=[];
+    for i=1:nFiles
+       x=A*z;
+    end
 
-audiowrite('fir.wav',wav1,fs);
-wavwrite(wav1,fs,'SI1024M_AWGN1.WAV');
-wavwrite(wav2,fs,'SX223M_AWGN1.WAV');
+    %implementation of the fastica algorithm
+    c=fastica([x(1,:);x(2,:)]); 
 
-%% adding extra noise awgn2
+    % %hear the independent components of the fastica algorithm
+    % sound(c(1,:),fs);
+    % sound(c(2,:),fs);
 
-z1 = awgn(y1,5,'measured');
-z2 = awgn(y2,5,'measured');
-%z1=y1+2*(rand(length(y1),1)-.5))
-s(1,1:size_1) = z1;
-s(2,1:size_2) = z2;
+    %plot the independent components of the fastica algorithm
+    figure('color','white');
+    subplot(4,1,1); plot(t,s(1,:)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
+    subplot(4,1,2); plot(t,c(1,:)),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x1
+    subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
+    subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x2
 
-% hear the input signals
-sound(s(1,:),fs);
-sound(s(2,:),fs);
+    for i=1:size(c,1)
+        audiowrite(sprintf('Outputs/%d_SNR_%d.wav',i,SNR(k)),c(i,:),fs);
+    end
 
-%plot the input signals
-figure;
-subplot(2,1,1); plot(s(1,:)),grid on, title('signal_1'), xlabel('t (msec)'); % plot s1
-subplot(2,1,2); plot(s(2,:), 'r'),grid on, title('signal_2'), xlabel('t (msec)'); % plot s2
- 
-%create the mixing table and mix the signals
- A=[0.5 0.3; 0.8 0.9];  
- x=[];
-for i=1:nFiles
-   x=A*s;
 end
-
-%hear the mixed signals
-sound(x(1,:),fs);
-sound(x(2,:),fs);
-
-% plot the mixed signals
-figure;
-plot(x(1,:),'r');
-hold on
-plot(x(2,:),'b');
-hold off;
-
-%implementation of the fastica algorithm
-c=fastica([x(1,:);x(2,:)]); 
-
-%hear the independent components of the fastica algorithm
-sound(c(1,:),fs);
-sound(c(2,:),fs);
-
-%plot the independent components of the fastica algorithm
-figure;
-subplot(2,1,1); plot(c(1,:)), grid on,title('signal_1'), xlabel('t (msec)');
-subplot(2,1,2); plot(c(2,:),'r'), grid on, title('signal_2'), xlabel('t (msec)');
-
-wav1=c(1,:)
-wav2=c(2,:)
-
-audiowrite('fir.wav',wav1,fs);
-wavwrite(wav1,fs,'SI1024M_AWGN2.WAV');
-wavwrite(wav2,fs,'SX223M_AWGN2.WAV');
-
-
-
-
