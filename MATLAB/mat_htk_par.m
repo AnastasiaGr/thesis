@@ -30,7 +30,7 @@ end
 s = zeros(nFiles,max(cellfun('length',inputs)));
 
 for i=1:nFiles
-    s(i,1:size(inputs{i},2)) = zscore(inputs{i});
+    s(i,1:size(inputs{i},2)) = inputs{i}/max(abs(inputs{i}));
 end
 t = 1/fs:1/fs:size(s,2)/fs;
 %plot the input signals
@@ -73,7 +73,7 @@ subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'
 subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title('ICA Signal 2'), xlabel('t (sec)'); % plot x2
 
 for i=1:size(c,1)
-    audiowrite(sprintf('Outputs/%d.wav',i),c(i,:),fs);
+    audiowrite(sprintf('Outputs/%d.wav',i),c(i,:)/max(abs(c(i,:))),fs);
 end
 
 %% Mixing adding white gaussian noise with specified SNR.
@@ -117,7 +117,7 @@ for k=1:size(SNR,2)
     subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x2
 
     for i=1:size(c,1)
-        audiowrite(sprintf('Outputs/%d_SNR_%d.wav',i,SNR(k)),c(i,:),fs);
+        audiowrite(sprintf('Outputs/%d_SNR_%d.wav',i,SNR(k)),c(i,:)/max(abs(c(i,:))),fs);
     end
 
 end

@@ -1,0 +1,441 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>mat_htk_par</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-02-07"><meta name="DC.source" content="mat_htk_par.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Speech separation and recognition from an HMM Trained on TIMIT copurs by HTK</a></li><li><a href="#2">Loading files</a></li><li><a href="#3">Mixing without extra noise</a></li><li><a href="#4">adding extra noise awgn1</a></li><li><a href="#5">adding extra noise awgn2</a></li></ul></div><h2>Speech separation and recognition from an HMM Trained on TIMIT copurs by HTK<a name="1"></a></h2><p>University of Patras - Anastasia Grigoropoulou 2016</p><pre class="codeinput">clear;
+clc;
+load(<span class="string">'legacy/filters.mat'</span>);
+<span class="comment">% Set up directories</span>
+HOME = <span class="string">'../'</span>;
+WORKDIR = strcat(HOME,<span class="string">'HTK_TIMIT_WRD/'</span>);
+TIMIT = strcat(HOME, <span class="string">'TIMIT/TIMIT/'</span>);
+</pre><h2>Loading files<a name="2"></a></h2><pre class="codeinput"><span class="comment">%load the input signals</span>
+fid = fopen(<span class="string">'coreTEST.SCP'</span>);
+files = textscan(fid,<span class="string">'%s\n'</span>);
+files = files{1};
+fclose(fid);
+
+<span class="comment">% traindir = 'matlab_examples/';</span>
+nFiles = 2;
+inputs = cell(2,1);
+fs = 16000;
+<span class="keyword">for</span> i=1:nFiles
+    [inputs{i}, Fs] = read_NIST_file(strcat(TIMIT,files{i}));
+    assert(Fs==fs);
+<span class="keyword">end</span>
+
+s = zeros(nFiles,max(cellfun(<span class="string">'length'</span>,inputs)));
+
+<span class="keyword">for</span> i=1:nFiles
+    s(i,1:size(inputs{i},2)) = inputs{i};
+<span class="keyword">end</span>
+
+<span class="comment">%plot the input signals</span>
+inputs = figure;
+subplot(2,1,1); plot(s(1,:)),grid <span class="string">on</span>, title(<span class="string">'signal_1'</span>), xlabel(<span class="string">'t (msec)'</span>); <span class="comment">% plot s1</span>
+subplot(2,1,2); plot(s(2,:), <span class="string">'r'</span>),grid <span class="string">on</span>, title(<span class="string">'signal_2'</span>), xlabel(<span class="string">'t (msec)'</span>); <span class="comment">% plot s2</span>
+</pre><img vspace="5" hspace="5" src="mat_htk_par_01.png" style="width:560px;height:420px;" alt=""> <h2>Mixing without extra noise<a name="3"></a></h2><pre class="codeinput"><span class="comment">% create the mixing table and mix the signals</span>
+A=[0.5 0.3; 0.8 0.9];
+x=[];
+<span class="keyword">for</span> i=1:nFiles
+   x=A*s;
+<span class="keyword">end</span>
+
+<span class="comment">%hear the mixed signals</span>
+sound(x(1,:),fs);
+sound(x(2,:),fs);
+
+<span class="comment">% plot the mixed signals</span>
+figure;
+plot(x(1,:),<span class="string">'r'</span>);
+hold <span class="string">on</span>
+plot(x(2,:),<span class="string">'b'</span>);
+hold <span class="string">off</span>;
+
+<span class="comment">%implementation of the fastica algorithm</span>
+c=fastica([x(1,:);x(2,:)]);
+
+<span class="comment">%hear the independent components of the fastica algorithm</span>
+sound(c(1,:),fs);
+sound(c(2,:),fs);
+
+<span class="comment">%plot the independent components of the fastica algorithm</span>
+figure;
+subplot(2,1,1); plot(c(1,:)), grid <span class="string">on</span>,title(<span class="string">'signal_1'</span>), xlabel(<span class="string">'t (msec)'</span>);
+subplot(2,1,2); plot(c(2,:),<span class="string">'r'</span>), grid <span class="string">on</span>, title(<span class="string">'signal_2'</span>), xlabel(<span class="string">'t (msec)'</span>);
+
+wav1=c(1,:)
+wav2=c(2,:)
+
+
+audiowrite(<span class="string">'fir.wav'</span>,wav1,fs);
+wavwrite(wav1,fs,<span class="string">'SI943M.WAV'</span>);
+wavwrite(wav2,fs,<span class="string">'SI1024M.WAV'</span>);
+
+Reference <span class="string">https://www.physicsforums.com/threads/matlab-using-wavwrite-to-create-a-single-audio-file.189093/</span>
+</pre><pre class="codeoutput error">Undefined function 'fastica' for input arguments of type 'double'.
+
+Error in mat_htk_par (line 61)
+c=fastica([x(1,:);x(2,:)]); 
+</pre><h2>adding extra noise awgn1<a name="4"></a></h2><pre class="codeinput">z1 = awgn(y1,10,<span class="string">'measured'</span>);
+z2 = awgn(y2,10,<span class="string">'measured'</span>);
+<span class="comment">%z1=y1+2*(rand(length(y1),1)-.5))</span>
+s(1,1:size_1) = z1;
+s(2,1:size_2) = z2;
+
+<span class="comment">% hear the input signals</span>
+sound(s(1,:),fs);
+sound(s(2,:),fs);
+
+<span class="comment">%plot the input signals</span>
+figure;
+subplot(2,1,1); plot(s(1,:)),grid <span class="string">on</span>, title(<span class="string">'signal_1'</span>), xlabel(<span class="string">'t (msec)'</span>); <span class="comment">% plot s1</span>
+subplot(2,1,2); plot(s(2,:), <span class="string">'r'</span>),grid <span class="string">on</span>, title(<span class="string">'signal_2'</span>), xlabel(<span class="string">'t (msec)'</span>); <span class="comment">% plot s2</span>
+
+<span class="comment">%create the mixing table and mix the signals</span>
+ A=[0.5 0.3; 0.8 0.9];
+ x=[];
+<span class="keyword">for</span> i=1:nFiles
+   x=A*s;
+<span class="keyword">end</span>
+
+<span class="comment">%hear the mixed signals</span>
+sound(x(1,:),fs);
+sound(x(2,:),fs);
+
+<span class="comment">% plot the mixed signals</span>
+figure;
+plot(x(1,:),<span class="string">'r'</span>);
+hold <span class="string">on</span>
+plot(x(2,:),<span class="string">'b'</span>);
+hold <span class="string">off</span>;
+
+<span class="comment">%implementation of the fastica algorithm</span>
+c=fastica([x(1,:);x(2,:)]);
+
+<span class="comment">%hear the independent components of the fastica algorithm</span>
+sound(c(1,:),fs);
+sound(c(2,:),fs);
+
+<span class="comment">%plot the independent components of the fastica algorithm</span>
+figure;
+subplot(2,1,1); plot(c(1,:)), grid <span class="string">on</span>,title(<span class="string">'signal_1'</span>), xlabel(<span class="string">'t (msec)'</span>);
+subplot(2,1,2); plot(c(2,:),<span class="string">'r'</span>), grid <span class="string">on</span>, title(<span class="string">'signal_2'</span>), xlabel(<span class="string">'t (msec)'</span>);
+
+wav1=c(1,:)
+wav2=c(2,:)
+
+audiowrite(<span class="string">'fir.wav'</span>,wav1,fs);
+wavwrite(wav1,fs,<span class="string">'SI1024M_AWGN1.WAV'</span>);
+wavwrite(wav2,fs,<span class="string">'SX223M_AWGN1.WAV'</span>);
+</pre><h2>adding extra noise awgn2<a name="5"></a></h2><pre class="codeinput">z1 = awgn(y1,5,<span class="string">'measured'</span>);
+z2 = awgn(y2,5,<span class="string">'measured'</span>);
+<span class="comment">%z1=y1+2*(rand(length(y1),1)-.5))</span>
+s(1,1:size_1) = z1;
+s(2,1:size_2) = z2;
+
+<span class="comment">% hear the input signals</span>
+sound(s(1,:),fs);
+sound(s(2,:),fs);
+
+<span class="comment">%plot the input signals</span>
+figure;
+subplot(2,1,1); plot(s(1,:)),grid <span class="string">on</span>, title(<span class="string">'signal_1'</span>), xlabel(<span class="string">'t (msec)'</span>); <span class="comment">% plot s1</span>
+subplot(2,1,2); plot(s(2,:), <span class="string">'r'</span>),grid <span class="string">on</span>, title(<span class="string">'signal_2'</span>), xlabel(<span class="string">'t (msec)'</span>); <span class="comment">% plot s2</span>
+
+<span class="comment">%create the mixing table and mix the signals</span>
+ A=[0.5 0.3; 0.8 0.9];
+ x=[];
+<span class="keyword">for</span> i=1:nFiles
+   x=A*s;
+<span class="keyword">end</span>
+
+<span class="comment">%hear the mixed signals</span>
+sound(x(1,:),fs);
+sound(x(2,:),fs);
+
+<span class="comment">% plot the mixed signals</span>
+figure;
+plot(x(1,:),<span class="string">'r'</span>);
+hold <span class="string">on</span>
+plot(x(2,:),<span class="string">'b'</span>);
+hold <span class="string">off</span>;
+
+<span class="comment">%implementation of the fastica algorithm</span>
+c=fastica([x(1,:);x(2,:)]);
+
+<span class="comment">%hear the independent components of the fastica algorithm</span>
+sound(c(1,:),fs);
+sound(c(2,:),fs);
+
+<span class="comment">%plot the independent components of the fastica algorithm</span>
+figure;
+subplot(2,1,1); plot(c(1,:)), grid <span class="string">on</span>,title(<span class="string">'signal_1'</span>), xlabel(<span class="string">'t (msec)'</span>);
+subplot(2,1,2); plot(c(2,:),<span class="string">'r'</span>), grid <span class="string">on</span>, title(<span class="string">'signal_2'</span>), xlabel(<span class="string">'t (msec)'</span>);
+
+wav1=c(1,:)
+wav2=c(2,:)
+
+audiowrite(<span class="string">'fir.wav'</span>,wav1,fs);
+wavwrite(wav1,fs,<span class="string">'SI1024M_AWGN2.WAV'</span>);
+wavwrite(wav2,fs,<span class="string">'SX223M_AWGN2.WAV'</span>);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Speech separation and recognition from an HMM Trained on TIMIT copurs by HTK
+% 
+% University of Patras - Anastasia Grigoropoulou 2016
+
+clear;
+clc;
+load('legacy/filters.mat');
+% Set up directories
+HOME = '../';
+WORKDIR = strcat(HOME,'HTK_TIMIT_WRD/');
+TIMIT = strcat(HOME, 'TIMIT/TIMIT/');
+
+%% Loading files
+%load the input signals
+fid = fopen('coreTEST.SCP');
+files = textscan(fid,'%s\n');
+files = files{1};
+fclose(fid);
+
+% traindir = 'matlab_examples/'; 
+nFiles = 2;
+inputs = cell(2,1);
+fs = 16000;
+for i=1:nFiles
+    [inputs{i}, Fs] = read_NIST_file(strcat(TIMIT,files{i}));
+    assert(Fs==fs);
+end
+
+s = zeros(nFiles,max(cellfun('length',inputs)));
+
+for i=1:nFiles
+    s(i,1:size(inputs{i},2)) = inputs{i};
+end
+
+%plot the input signals
+inputs = figure;
+subplot(2,1,1); plot(s(1,:)),grid on, title('signal_1'), xlabel('t (msec)'); % plot s1
+subplot(2,1,2); plot(s(2,:), 'r'),grid on, title('signal_2'), xlabel('t (msec)'); % plot s2
+
+%% Mixing without extra noise
+
+% create the mixing table and mix the signals
+A=[0.5 0.3; 0.8 0.9];  
+x=[];
+for i=1:nFiles
+   x=A*s;
+end
+
+%hear the mixed signals
+sound(x(1,:),fs);
+sound(x(2,:),fs);
+
+% plot the mixed signals
+figure;
+plot(x(1,:),'r');
+hold on
+plot(x(2,:),'b');
+hold off;
+
+%implementation of the fastica algorithm
+c=fastica([x(1,:);x(2,:)]); 
+
+%hear the independent components of the fastica algorithm
+sound(c(1,:),fs);
+sound(c(2,:),fs);
+
+%plot the independent components of the fastica algorithm
+figure;
+subplot(2,1,1); plot(c(1,:)), grid on,title('signal_1'), xlabel('t (msec)');
+subplot(2,1,2); plot(c(2,:),'r'), grid on, title('signal_2'), xlabel('t (msec)');
+
+wav1=c(1,:)
+wav2=c(2,:)
+
+
+audiowrite('fir.wav',wav1,fs);
+wavwrite(wav1,fs,'SI943M.WAV');
+wavwrite(wav2,fs,'SI1024M.WAV');
+
+Reference https://www.physicsforums.com/threads/matlab-using-wavwrite-to-create-a-single-audio-file.189093/
+%% adding extra noise awgn1
+
+z1 = awgn(y1,10,'measured');
+z2 = awgn(y2,10,'measured');
+%z1=y1+2*(rand(length(y1),1)-.5))
+s(1,1:size_1) = z1;
+s(2,1:size_2) = z2;
+
+% hear the input signals
+sound(s(1,:),fs);
+sound(s(2,:),fs);
+
+%plot the input signals
+figure;
+subplot(2,1,1); plot(s(1,:)),grid on, title('signal_1'), xlabel('t (msec)'); % plot s1
+subplot(2,1,2); plot(s(2,:), 'r'),grid on, title('signal_2'), xlabel('t (msec)'); % plot s2
+ 
+%create the mixing table and mix the signals
+ A=[0.5 0.3; 0.8 0.9];  
+ x=[];
+for i=1:nFiles
+   x=A*s;
+end
+
+%hear the mixed signals
+sound(x(1,:),fs);
+sound(x(2,:),fs);
+
+% plot the mixed signals
+figure;
+plot(x(1,:),'r');
+hold on
+plot(x(2,:),'b');
+hold off;
+
+%implementation of the fastica algorithm
+c=fastica([x(1,:);x(2,:)]); 
+
+%hear the independent components of the fastica algorithm
+sound(c(1,:),fs);
+sound(c(2,:),fs);
+
+%plot the independent components of the fastica algorithm
+figure;
+subplot(2,1,1); plot(c(1,:)), grid on,title('signal_1'), xlabel('t (msec)');
+subplot(2,1,2); plot(c(2,:),'r'), grid on, title('signal_2'), xlabel('t (msec)');
+
+wav1=c(1,:)
+wav2=c(2,:)
+
+audiowrite('fir.wav',wav1,fs);
+wavwrite(wav1,fs,'SI1024M_AWGN1.WAV');
+wavwrite(wav2,fs,'SX223M_AWGN1.WAV');
+
+%% adding extra noise awgn2
+
+z1 = awgn(y1,5,'measured');
+z2 = awgn(y2,5,'measured');
+%z1=y1+2*(rand(length(y1),1)-.5))
+s(1,1:size_1) = z1;
+s(2,1:size_2) = z2;
+
+% hear the input signals
+sound(s(1,:),fs);
+sound(s(2,:),fs);
+
+%plot the input signals
+figure;
+subplot(2,1,1); plot(s(1,:)),grid on, title('signal_1'), xlabel('t (msec)'); % plot s1
+subplot(2,1,2); plot(s(2,:), 'r'),grid on, title('signal_2'), xlabel('t (msec)'); % plot s2
+ 
+%create the mixing table and mix the signals
+ A=[0.5 0.3; 0.8 0.9];  
+ x=[];
+for i=1:nFiles
+   x=A*s;
+end
+
+%hear the mixed signals
+sound(x(1,:),fs);
+sound(x(2,:),fs);
+
+% plot the mixed signals
+figure;
+plot(x(1,:),'r');
+hold on
+plot(x(2,:),'b');
+hold off;
+
+%implementation of the fastica algorithm
+c=fastica([x(1,:);x(2,:)]); 
+
+%hear the independent components of the fastica algorithm
+sound(c(1,:),fs);
+sound(c(2,:),fs);
+
+%plot the independent components of the fastica algorithm
+figure;
+subplot(2,1,1); plot(c(1,:)), grid on,title('signal_1'), xlabel('t (msec)');
+subplot(2,1,2); plot(c(2,:),'r'), grid on, title('signal_2'), xlabel('t (msec)');
+
+wav1=c(1,:)
+wav2=c(2,:)
+
+audiowrite('fir.wav',wav1,fs);
+wavwrite(wav1,fs,'SI1024M_AWGN2.WAV');
+wavwrite(wav2,fs,'SX223M_AWGN2.WAV');
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
