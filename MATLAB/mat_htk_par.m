@@ -125,10 +125,7 @@ end
 %% Recognize the un-mixed signals with the best HTK recognizer
 
 % config
-% dict
-% MMF
-% tiedlist
-% wd_nets
+
 
         %HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
         %HResults -A -T 1 -c -I ${TESTSET}1Word.mlf tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
