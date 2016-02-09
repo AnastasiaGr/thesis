@@ -61,9 +61,18 @@ subplot(4,1,4); plot(t,x(2,:), 'r'),grid on, title('Mixed Signal 2'), xlabel('t 
 %implementation of the fastica algorithm
 c=fastica([x(1,:);x(2,:)]); 
 
+for i=1:nFiles
+    c(i,:) = c(i,:)/max(abs(c(i,:)));
+end
 % %hear the independent components of the fastica algorithm
 % sound(c(1,:),fs);
 % sound(c(2,:),fs);
+
+if sum(abs(s(1,:))-abs(c(2,:))) < sum(abs(s(1,:))-abs(c(1,:)))
+    temp = c(1,:);
+    c(1,:) = c(2,:);
+    c(2,:) = temp;
+end
 
 %plot the independent components of the fastica algorithm
 figure('color','white');
@@ -72,13 +81,21 @@ subplot(4,1,2); plot(t,c(1,:)),grid on, title('ICA Signal 1'), xlabel('t (sec)')
 subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
 subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title('ICA Signal 2'), xlabel('t (sec)'); % plot x2
 
-for i=1:size(c,1)
-    audiowrite(sprintf('Outputs/%d.wav',i),c(i,:)/max(abs(c(i,:))),fs);
+for i=1:nFiles
+    audiowrite(sprintf('Outputs/%s.wav',files{i}(16:end-4)),c(i,:),fs);
 end
 
 %% Mixing adding white gaussian noise with specified SNR.
 
 SNR = [1,5,10];
+
+copyfile(strcat(WORKDIR,'coreTESTMono.mlf'),'Outputs/MATLABMono.mlf');
+copyfile(strcat(WORKDIR,'coreTESTWord.mlf'),'Outputs/MATLABWord.mlf');
+
+for k=1:size(SNR,2)
+    system(sprintf('sed "s/\\.lab/_SNR_%d\\.lab/" < ../HTK_TIMIT_WRD/coreTESTMono.mlf >> Outputs/MATLABMono.mlf',SNR(k)));
+    system(sprintf('sed "s/\\.lab/_SNR_%d\\.lab/" < ../HTK_TIMIT_WRD/coreTESTWord.mlf >> Outputs/MATLABWord.mlf',SNR(k)));
+end
 
 for k=1:size(SNR,2)
     z(1,:) = awgn(s(1,:),SNR(k),'measured');
@@ -91,9 +108,9 @@ for k=1:size(SNR,2)
     %plot the input signals
     figure('color','white');
     subplot(4,1,1); plot(t(fs:2*fs),s(1,fs:2*fs)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
-    subplot(4,1,2); plot(t(fs:2*fs),z(1,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x1
+    subplot(4,1,2); plot(t(fs:2*fs),z(1,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x1
     subplot(4,1,3); plot(t(fs:2*fs),s(2,fs:2*fs)),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
-    subplot(4,1,4); plot(t(fs:2*fs),z(2,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x2
+    subplot(4,1,4); plot(t(fs:2*fs),z(2,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
 
     %create the mixing table and mix the signals
      A=[0.5 0.3; 0.8 0.9];  
@@ -105,43 +122,32 @@ for k=1:size(SNR,2)
     %implementation of the fastica algorithm
     c=fastica([x(1,:);x(2,:)]); 
 
+    for i=1:nFiles
+        c(i,:) = c(i,:)/max(abs(c(i,:)));
+    end
     % %hear the independent components of the fastica algorithm
     % sound(c(1,:),fs);
     % sound(c(2,:),fs);
 
+    if sum(abs(z(1,:))-abs(c(2,:))) < sum(abs(z(1,:))-abs(c(1,:)))
+        temp = c(1,:);
+        c(1,:) = c(2,:);
+        c(2,:) = temp;
+    end
+
     %plot the independent components of the fastica algorithm
     figure('color','white');
     subplot(4,1,1); plot(t,s(1,:)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
-    subplot(4,1,2); plot(t,c(1,:)),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x1
+    subplot(4,1,2); plot(t,c(1,:)),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x1
     subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
-    subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',k)), xlabel('t (sec)'); % plot x2
+    subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
 
     for i=1:size(c,1)
-        audiowrite(sprintf('Outputs/%d_SNR_%d.wav',i,SNR(k)),c(i,:)/max(abs(c(i,:))),fs);
+        audiowrite(sprintf('Outputs/%s_SNR_%d.wav',files{i}(16:end-4),SNR(k)),c(i,:),fs);
     end
 
 end
 
 %% Recognize the un-mixed signals with the best HTK recognizer
-outputs = struct2cell(dir('Outputs'));
-files = outputs(1,3:end);
+[~,buffer] = system('source ~/.bashrc ; source eval_matlab.sh');
 
-system('PROJECT=$HOME/Desktop/thesis');
-system('CONFIG=${PROJECT}/configs');
-system('WORKDIR=${PROJECT}/HTK_TIMIT_WRD');
-system('HMM=${WORKDIR}/HMM');
-system('DIR=HMM/hmm62/tri-nmix28-npass4');
-system('DICT=${PROJECT}/dicts');
-system('LMODEL=${PROJECT}/models');
-
-system('cd Outputs');
-for i=1:size(files,2)
-    system(strcat('HCopy -A -T 1 -C ${CONFIG}/configMATLAB ',files{i}))
-end
-% config
-       %HVite -A -T 1 -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/phn_${p}_${s}_recout.mlf -w ${LMODEL}/mlf/wdnet_monophones -t 250.0 -p ${p} -s ${s} ${DICT}/dict_monophones tiedlist >> ${LOG}/log.eval_tune
-       % HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/wrd_${p}_${s}_recout.mlf -w ${LMODEL}/mlf/wdnet_bigram -t 250.0 -p ${p} -s ${s} ${DICT}/dict tiedlist  >> ${LOG}/log.eval_tune
-       % HVite -A -T 1 -C ${CONFIG}/configCROSS -H ${DIR}/MMF -S ${TESTSET}1.MFC -i ${DIR}/wrd_lm_${p}_${s}_recout.mlf -w ${LMODEL}/timit_lm/wdnet_ug -t 250.0 -p ${p} -s ${s} ${DICT}/dict tiedlist >> ${LOG}/log.eval_tune
- 
-        %HResults -A -T 1 -c tiedlist  ${DIR}/wrd_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune
-        %HResults -A -T 1 -c tiedlist ${DIR}/wrd_lm_${p}_${s}_recout.mlf  >> ${LOG}/log.results_tune

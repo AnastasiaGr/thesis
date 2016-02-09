@@ -1,0 +1,37 @@
+HResults -A -T 1 -t -c -S MATLAB.REC -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist 
+Aligned transcription: SI1386.lab vs SI1386.rec
+ LAB: IN WAGE NEGOTIATIONS THE       INDUSTRY BARGAINS AS A     UNIT WITH A SINGLE UNION 
+ REC: IN WAGE NEGOTIATIONS THE AND A STREET   BARGAINS AS A YOU DEAD WITH A SINGLE UNION 
+Aligned transcription: SI1386_SNR_1.lab vs SI1386_SNR_1.rec
+ LAB: IN WAGE NEGOTIATIONS THE INDUSTRY BARGAINS AS A   UNIT WITH A   SINGLE UNION 
+ REC:                          HEAD     HAD      IT HAD IF   HAD  HAD HAD    AN    
+Aligned transcription: SI1386_SNR_10.lab vs SI1386_SNR_10.rec
+ LAB: IN   WAGE NEGOTIATIONS       THE INDUSTRY BARGAINS AS A      UNIT WITH A  SINGLE UNION 
+ REC: ONLY IF   NEGOTIATIONS IT IF IT  I        HANDS    IF ENOUGH OF   IF   OF THE    IN    
+Aligned transcription: SI1386_SNR_5.lab vs SI1386_SNR_5.rec
+ LAB: IN     WAGE NEGOTIATIONS THE INDUSTRY BARGAINS AS A UNIT  WITH A   SINGLE UNION 
+ REC: IN WAY HAD  HIS          SHE IT       IF       IT I HANDS THE  WHO HAD    FOUND 
+Aligned transcription: SI2016.lab vs SI2016.rec
+ LAB: HEAVE ON   THOSE ROPES THE BOAT'S COME   UNSTUCK 
+ REC: HE    TOWN THOSE ROPES THE BOAT'S COMMON STUCK   
+Aligned transcription: SI2016_SNR_1.lab vs SI2016_SNR_1.rec
+ LAB: HEAVE ON THOSE  ROPES THE BOAT'S COME UNSTUCK 
+ REC:          LITTLE HAVE  THE AND    HAD  AN      
+Aligned transcription: SI2016_SNR_10.lab vs SI2016_SNR_10.rec
+ LAB: HEAVE ON THOSE ROPES THE  BOAT'S  COME   UNSTUCK 
+ REC:       HE TO    HAS   ROAD HIMSELF COMMON STONE   
+Aligned transcription: SI2016_SNR_5.lab vs SI2016_SNR_5.rec
+ LAB: HEAVE ON THOSE ROPES THE   BOAT'S COME UNSTUCK 
+ REC:       HE DON'T WAS   THE A THAT   ON   LITTLE  
+====================== HTK Results Analysis =======================
+  Date: Mon Feb  8 22:58:21 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1386.rec
+      : SI1386_SNR_1.rec
+      : SI1386_SNR_10.rec
+      : SI1386_SNR_5.rec
+      : SI2016.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=8, N=8]
+WORD: %Corr=22.62, Acc=14.29 [H=19, D=8, S=57, I=7, N=84]
+===================================================================
