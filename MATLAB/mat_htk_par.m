@@ -14,7 +14,7 @@ TIMIT = strcat(HOME, 'TIMIT/TIMIT/');
 %% Loading files
 %load the input signals
 fid = fopen('coreTEST.SCP');
-files = textscan(fid,'%s\n');
+files = textscan(fid,'%s');
 files = files{1};
 fclose(fid);
 
@@ -87,7 +87,7 @@ end
 
 %% Mixing adding white gaussian noise with specified SNR.
 
-SNR = [1,5,10];
+SNR = [1, 5, 10];
 
 copyfile(strcat(WORKDIR,'coreTESTMono.mlf'),'Outputs/MATLABMono.mlf');
 copyfile(strcat(WORKDIR,'coreTESTWord.mlf'),'Outputs/MATLABWord.mlf');
@@ -97,6 +97,7 @@ for k=1:size(SNR,2)
     system(sprintf('sed "s/\\.lab/_SNR_%d\\.lab/" < ../HTK_TIMIT_WRD/coreTESTWord.mlf >> Outputs/MATLABWord.mlf',SNR(k)));
 end
 
+SIR = zeros(nFiles,size(SNR,2));
 for k=1:size(SNR,2)
     z(1,:) = awgn(s(1,:),SNR(k),'measured');
     z(2,:) = awgn(s(2,:),SNR(k),'measured');
@@ -122,9 +123,7 @@ for k=1:size(SNR,2)
     %implementation of the fastica algorithm
     c=fastica([x(1,:);x(2,:)]); 
 
-    for i=1:nFiles
-        c(i,:) = c(i,:)/max(abs(c(i,:)));
-    end
+    
     % %hear the independent components of the fastica algorithm
     % sound(c(1,:),fs);
     % sound(c(2,:),fs);
@@ -134,19 +133,45 @@ for k=1:size(SNR,2)
         c(1,:) = c(2,:);
         c(2,:) = temp;
     end
+    
+    for i=1:nFiles
+    % Calculate the power in the transmitted signal, 'SignalPower'
+           SignalPower = norm(s(i,:))^2/length(s(i,:));
+    % Estimate the noise power based on the signal-to-noise ratio
+           NoisePower = SignalPower/db2pow(SNR(k));
+    % Calculate the total power in the received signal    
+           TotalPower = norm(c(i,:))^2/length(c(i,:));
+    % Calculate the interference power
+           InterferePower = TotalPower - NoisePower - SignalPower;
+    % Calculate the Carrier-To-Interference Ratio in dB
+           CIR =  pow2db(SignalPower/InterferePower);
+           
+           SIR(i,k) = CIR;
+    end
+    
+    for i=1:nFiles
+        c(i,:) = c(i,:)/max(abs(c(i,:)));
+    end
 
     %plot the independent components of the fastica algorithm
     figure('color','white');
     subplot(4,1,1); plot(t,s(1,:)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
     subplot(4,1,2); plot(t,c(1,:)),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x1
     subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
-    subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
+    subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title(sprintf('ICA Signal 2 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
 
     for i=1:size(c,1)
         audiowrite(sprintf('Outputs/%s_SNR_%d.wav',files{i}(16:end-4),SNR(k)),c(i,:),fs);
     end
 
 end
+
+figure 
+hold on
+for i=1:nFiles
+    scatter(SNR,SIR(i,:))
+end
+
 
 %% Recognize the un-mixed signals with the best HTK recognizer
 [~,buffer] = system('source ~/.bashrc ; source eval_matlab.sh');
