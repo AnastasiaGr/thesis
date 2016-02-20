@@ -87,7 +87,7 @@ end
 
 %% Mixing adding white gaussian noise with specified SNR.
 
-SNR = [1, 5, 10];
+SNR = [0, 5, 10, 15, 20];
 
 copyfile(strcat(WORKDIR,'coreTESTMono.mlf'),'Outputs/MATLABMono.mlf');
 copyfile(strcat(WORKDIR,'coreTESTWord.mlf'),'Outputs/MATLABWord.mlf');
@@ -101,17 +101,17 @@ SIR = zeros(nFiles,size(SNR,2));
 for k=1:size(SNR,2)
     z(1,:) = awgn(s(1,:),SNR(k),'measured');
     z(2,:) = awgn(s(2,:),SNR(k),'measured');
-
+    
     % % hear the input signals
     % sound(z1,fs);
     % sound(z2,fs);
 
     %plot the input signals
-    figure('color','white');
-    subplot(4,1,1); plot(t(fs:2*fs),s(1,fs:2*fs)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
-    subplot(4,1,2); plot(t(fs:2*fs),z(1,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x1
-    subplot(4,1,3); plot(t(fs:2*fs),s(2,fs:2*fs)),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
-    subplot(4,1,4); plot(t(fs:2*fs),z(2,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
+    %figure('color','white');
+    %subplot(4,1,1); plot(t(fs:2*fs),s(1,fs:2*fs)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
+    %subplot(4,1,2); plot(t(fs:2*fs),z(1,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x1
+    %subplot(4,1,3); plot(t(fs:2*fs),s(2,fs:2*fs)),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
+    %subplot(4,1,4); plot(t(fs:2*fs),z(2,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
 
     %create the mixing table and mix the signals
      A=[0.5 0.3; 0.8 0.9];  
@@ -149,9 +149,9 @@ for k=1:size(SNR,2)
            SIR(i,k) = CIR;
     end
     
-    for i=1:nFiles
+   for i=1:nFiles
         c(i,:) = c(i,:)/max(abs(c(i,:)));
-    end
+   end
 
     %plot the independent components of the fastica algorithm
     figure('color','white');
@@ -160,16 +160,16 @@ for k=1:size(SNR,2)
     subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
     subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title(sprintf('ICA Signal 2 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
 
-    for i=1:size(c,1)
-        audiowrite(sprintf('Outputs/%s_SNR_%d.wav',files{i}(16:end-4),SNR(k)),c(i,:),fs);
-    end
+    %for i=1:size(c,1)
+    %   audiowrite(sprintf('Outputs/%s_SNR_%d.wav',files{i}(16:end-4),SNR(k)),c(i,:),fs);
+    %end
 
 end
 
 figure 
 hold on
 for i=1:nFiles
-    scatter(SNR,SIR(i,:))
+    scatter(SNR,SIR(i,:),'filled'),xlabel('SNR (db)'),ylabel('SIR (db)');
 end
 
 
