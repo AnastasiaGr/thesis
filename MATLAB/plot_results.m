@@ -80,15 +80,18 @@ DATA = [phn; wrd_net; wrd_lm; sent_net; sent_lm]';
 filename = 'Outputs/log.results';
 buffer = fileread(filename);
 
-results = regexp(buffer,'(?:\%Correct*\=)(?<h>[0-9.]*)','tokens');
-sent = str2double([results{:}]);
 results = regexp(buffer,'(?:\%Corr*\=)(?<h>[0-9.]*)','tokens');
 word = str2double([results{:}]);
 
-phn = word(1:3:size(results,2));
-wrd_net = word(2:3:size(results,2));
-wrd_lm = word(3:3:size(results,2));
-sent_net = sent(2:3:size(results,2));
-sent_lm = sent(3:3:size(results,2));
+sent1 = word(1:10)/word(1)*100;
+sent2 = word(11:end)/word(11)*100;
 
-DATA = [phn; wrd_net; wrd_lm; sent_net; sent_lm]';
+% SNR = [0,   1, 2,  5, 10, 15, 20, 30 ,40, inf]
+% ind = [1,   2, 3,  4,  5,  6,  7,  8,  9, 10]
+% res = [inf, 0, 1, 10, 15,  2, 20, 30, 40, 5];
+ind = [2 3 6 10 4 5 7 8 9 1];
+sent1 = sent1(ind);
+sent2 = sent2(ind);
+
+DATA = [sent1; sent2]';
+results_figure_matlab(DATA, 'Figures/results_matlab.fig');
