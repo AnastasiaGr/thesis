@@ -1,5 +1,5 @@
 %% Speech separation and recognition from an HMM Trained on TIMIT copurs by HTK
-% 
+%
 % University of Patras - Anastasia Grigoropoulou 2016
 
 clear;
@@ -18,7 +18,11 @@ files = textscan(fid,'%s');
 files = files{1};
 fclose(fid);
 
-% traindir = 'matlab_examples/'; 
+% Selecting two files with exemplary no-noise recognition
+files{1} = files{2};
+files{2} = files{9};
+
+% traindir = 'matlab_examples/';
 nFiles = 2;
 inputs = cell(2,1);
 fs = 16000;
@@ -41,10 +45,10 @@ subplot(2,1,2); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'
 %% Mixing without extra noise
 
 % create the mixing table and mix the signals
-A=[0.5 0.3; 0.8 0.9];  
+A=[0.5 0.3; 0.8 0.9];
 x=[];
 for i=1:nFiles
-   x=A*s;
+    x=A*s;
 end
 
 % %hear the mixed signals
@@ -59,7 +63,7 @@ subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'
 subplot(4,1,4); plot(t,x(2,:), 'r'),grid on, title('Mixed Signal 2'), xlabel('t (sec)'); % plot x2
 
 %implementation of the fastica algorithm
-c=fastica([x(1,:);x(2,:)]); 
+c=fastica([x(1,:);x(2,:)]);
 
 for i=1:nFiles
     c(i,:) = c(i,:)/max(abs(c(i,:)));
@@ -68,7 +72,7 @@ end
 % sound(c(1,:),fs);
 % sound(c(2,:),fs);
 
-if sum(abs(s(1,:))-abs(c(2,:))) < sum(abs(s(1,:))-abs(c(1,:)))
+if sum(xcorr(abs(s(1,:)),abs(c(2,:)))) < sum(xcorr(abs(s(1,:)),abs(c(1,:))))
     temp = c(1,:);
     c(1,:) = c(2,:);
     c(2,:) = temp;
@@ -87,7 +91,7 @@ end
 
 %% Mixing adding white gaussian noise with specified SNR.
 
-SNR = [0, 5, 10, 15, 20, 30, 40];
+SNR = [0, 1, 2, 5, 10, 15, 20, 30, 40];
 
 copyfile(strcat(WORKDIR,'coreTESTMono.mlf'),'Outputs/MATLABMono.mlf');
 copyfile(strcat(WORKDIR,'coreTESTWord.mlf'),'Outputs/MATLABWord.mlf');
@@ -106,30 +110,30 @@ for k=1:size(SNR,2)
     % % hear the input signals
     % sound(z1,fs);
     % sound(z2,fs);
-
+    
     %plot the input signals
     figure('color','white');
     subplot(4,1,1); plot(t(fs:2*fs),s(1,fs:2*fs)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
     subplot(4,1,2); plot(t(fs:2*fs),z(1,fs:2*fs)),grid on, title(sprintf('Noisy Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x1
     subplot(4,1,3); plot(t(fs:2*fs),s(2,fs:2*fs)),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
     subplot(4,1,4); plot(t(fs:2*fs),z(2,fs:2*fs)),grid on, title(sprintf('Noisy Signal 2 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
-
+    
     %create the mixing table and mix the signals
-     A=[0.5 0.3; 0.8 0.9];  
-     x=[];
+    A=[0.5 0.3; 0.8 0.9];
+    x=[];
     for i=1:nFiles
-       x=A*z;
+        x=A*z;
     end
-
+    
     %implementation of the fastica algorithm
-    c=fastica([x(1,:);x(2,:)]); 
-
+    c=fastica([x(1,:);x(2,:)]);
+    
     
     % %hear the independent components of the fastica algorithm
     % sound(c(1,:),fs);
     % sound(c(2,:),fs);
-
-    if sum(abs(z(1,:))-abs(c(2,:))) < sum(abs(z(1,:))-abs(c(1,:)))
+    
+    if sum(xcorr(abs(s(1,:)),abs(c(2,:)))) < sum(xcorr(abs(s(1,:)),abs(c(1,:))))
         temp = c(1,:);
         c(1,:) = c(2,:);
         c(2,:) = temp;
@@ -137,43 +141,40 @@ for k=1:size(SNR,2)
     
     for i=1:nFiles
         c(i,:) = c(i,:)/max(abs(c(i,:)));
-   end   
-    
-    for i=1:nFiles
-    % Calculate the power in the transmitted signal, 'SignalPower'
-           SignalPower = norm(s(i,:))^2/length(s(i,:));
-    % Estimate the noise power based on the signal-to-noise ratio
-           NoisePower = SignalPower/db2pow(SNR(k));
-    % Calculate the total power in the received signal    
-           TotalPower = norm(c(i,:))^2/length(c(i,:));
-    % Calculate the interference power
-           InterferePower = TotalPower - NoisePower - SignalPower;
-    % Calculate the Carrier-To-Interference Ratio in dB
-           CIR =  pow2db(abs(SignalPower/InterferePower));
-           
-           SIR(i,k) = CIR;
-           SNRout(i,k) = pow2db(TotalPower/NoisePower);
-           
     end
     
-   %for i=1:nFiles
-   %     c(i,:) = c(i,:)/max(abs(c(i,:)));
-   %end
-
+    for i=1:nFiles
+        % Calculate the power in the transmitted signal, 'SignalPower'
+        SignalPower = norm(s(i,:))^2/length(s(i,:));
+        % Estimate the noise power based on the signal-to-noise ratio
+        NoisePower = SignalPower/db2pow(SNR(k));
+        % Calculate the total power in the received signal
+        TotalPower = norm(c(i,:))^2/length(c(i,:));
+        % Calculate the interference power
+        InterferePower = TotalPower - NoisePower - SignalPower;
+        % Calculate the Carrier-To-Interference Ratio in dB
+        CIR =  pow2db(abs(SignalPower/InterferePower));
+        
+        SIR(i,k) = CIR;
+        SNRout(i,k) = pow2db(TotalPower/NoisePower);
+        
+    end
+    
+    
     %plot the independent components of the fastica algorithm
     figure('color','white');
     subplot(4,1,1); plot(t,s(1,:)),grid on, title('Signal 1'), xlabel('t (sec)'); % plot s1
     subplot(4,1,2); plot(t,c(1,:)),grid on, title(sprintf('ICA Signal 1 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x1
     subplot(4,1,3); plot(t,s(2,:), 'r'),grid on, title('Signal 2'), xlabel('t (sec)'); % plot s2
     subplot(4,1,4); plot(t,c(2,:), 'r'),grid on, title(sprintf('ICA Signal 2 - SNR: %d ',SNR(k))), xlabel('t (sec)'); % plot x2
-
+    
     for i=1:size(c,1)
-       audiowrite(sprintf('Outputs/%s_SNR_%d.wav',files{i}(16:end-4),SNR(k)),c(i,:),fs);
+        audiowrite(sprintf('Outputs/%s_SNR_%d.wav',files{i}(16:end-4),SNR(k)),c(i,:),fs);
     end
-
+    
 end
 
-figure 
+figure
 hold on
 for i=1:nFiles
     plot(SNR,SIR(i,:)),xlabel('SNR (db)'),ylabel('SIR (db)'); grid on;

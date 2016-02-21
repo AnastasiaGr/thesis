@@ -32,8 +32,9 @@ for i=1:size(file_exts,2)
     sent_lm = sent(3:3:size(results,2));
 
     DATA = [phn; wrd_net; wrd_lm; sent_net; sent_lm]';
-
-    results_figure_20(DATA, strcat('Figures/',filename,'.fig'));
+    
+    % Be careful, it will overwrite current figure
+%     results_figure_20(DATA, strcat('Figures/',filename,'.fig'));
 end
 
 %% Plotting subsequent mixing
@@ -53,7 +54,8 @@ sent_lm = sent(3:3:size(results,2));
 
 DATA = [phn; wrd_net; wrd_lm; sent_net; sent_lm]';
 
-results_figure_4(DATA, strcat('Figures/',filename,'.fig'));
+    % Be careful, it will overwrite current figure
+% results_figure_4(DATA, strcat('Figures/',filename,'.fig'));
 %% Plotting tuning of parameters
 filename = strcat(file_handle,'tune');
 buffer = fileread(strcat(RESULTSDIR,filename));
@@ -71,4 +73,22 @@ sent_lm = sent(3:3:size(results,2));
 
 DATA = [phn; wrd_net; wrd_lm; sent_net; sent_lm]';
 
-results_figure_tune(DATA, strcat('Figures/',filename,'.fig'));
+    % Be careful, it will overwrite current figure
+% results_figure_tune(DATA, strcat('Figures/',filename,'.fig'));
+
+%% Plotting
+filename = 'Outputs/log.results';
+buffer = fileread(filename);
+
+results = regexp(buffer,'(?:\%Correct*\=)(?<h>[0-9.]*)','tokens');
+sent = str2double([results{:}]);
+results = regexp(buffer,'(?:\%Corr*\=)(?<h>[0-9.]*)','tokens');
+word = str2double([results{:}]);
+
+phn = word(1:3:size(results,2));
+wrd_net = word(2:3:size(results,2));
+wrd_lm = word(3:3:size(results,2));
+sent_net = sent(2:3:size(results,2));
+sent_lm = sent(3:3:size(results,2));
+
+DATA = [phn; wrd_net; wrd_lm; sent_net; sent_lm]';

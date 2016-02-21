@@ -1,0 +1,241 @@
+Results
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039.rec 
+Aligned transcription: SI1039.lab vs SI1039.rec
+ LAB: HE HAS NEVER HIMSELF DONE ANYTHING FOR WHICH    TO  BE HATED WHICH OF US HAS 
+ REC: HE HAS NEVER HIMSELF THAT EVENING  FOR TWITCHED THE HE IT    WHICH OF US HAS 
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:48 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=60.00, Acc=60.00 [H=9, D=0, S=6, I=0, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_0.rec 
+Aligned transcription: SI1039_SNR_0.lab vs SI1039_SNR_0.rec
+ LAB: HE HAS NEVER HIMSELF DONE ANYTHING FOR WHICH TO BE HATED WHICH OF  US  HAS 
+ REC:                                                    HAD   HAD   AND THE HAD 
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:49 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_0.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=0.00, Acc=0.00 [H=0, D=10, S=5, I=0, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_1.rec 
+Aligned transcription: SI1039_SNR_1.lab vs SI1039_SNR_1.rec
+ LAB: HE HAS NEVER HIMSELF DONE ANYTHING FOR WHICH TO  BE   HATED WHICH OF  US HAS 
+ REC:                                              HAD HAVE A     HAD   AND IT HAD 
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:49 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_1.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=0.00, Acc=0.00 [H=0, D=8, S=7, I=0, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_10.rec 
+Aligned transcription: SI1039_SNR_10.lab vs SI1039_SNR_10.rec
+ LAB:     HE   HAS NEVER HIMSELF DONE ANYTHING FOR WHICH        TO BE HATED WHICH OF US  HAS 
+ REC: THE HAVE THE THE   HIMSELF THEY HAD      OF  WHICH HE HIS TO                   THE HAS 
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:49 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_10.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=26.67, Acc=6.67 [H=4, D=4, S=7, I=3, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_15.rec 
+Aligned transcription: SI1039_SNR_15.lab vs SI1039_SNR_15.rec
+ LAB: HE  HAS NEVER  HIMSELF    DONE ANYTHING FOR WHICH TO BE HATED WHICH OF US HAS 
+ REC: THE YES HEAVEN HIMSELF OF AND  THE      FOR WHICH    HE HIS   WHICH OF US IS  
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:49 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_15.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=40.00, Acc=33.33 [H=6, D=1, S=8, I=1, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_2.rec 
+Aligned transcription: SI1039_SNR_2.lab vs SI1039_SNR_2.rec
+ LAB: HE  HAS  NEVER HIMSELF DONE ANYTHING FOR WHICH TO BE HATED WHICH OF  US HAS         
+ REC: HAD HAVE A     HIMSELF                   THE   TO                HAD IT HAS THE HAD 
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:49 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_2.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=20.00, Acc=6.67 [H=3, D=6, S=6, I=2, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_20.rec 
+Aligned transcription: SI1039_SNR_20.lab vs SI1039_SNR_20.rec
+ LAB: HE  HAS NEVER HIMSELF     DONE ANYTHING FOR WHICH TO BE  HATED WHICH OF US HAS 
+ REC: THE YES NEVER HIMSELF THE MADE THE      FOR WHICH    THE HIS   WHICH OF US IS  
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:49 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_20.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=46.67, Acc=40.00 [H=7, D=1, S=7, I=1, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_30.rec 
+Aligned transcription: SI1039_SNR_30.lab vs SI1039_SNR_30.rec
+ LAB: HE  HAS NEVER HIMSELF DONE ANYTHING FOR WHICH TO  BE HATED WHICH OF US HAS 
+ REC: THE HAS NEVER HIMSELF THAT EVENING  FOR WHICH THE HE IF    WHICH OF US HAS 
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:50 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_30.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=60.00, Acc=60.00 [H=9, D=0, S=6, I=0, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_40.rec 
+Aligned transcription: SI1039_SNR_40.lab vs SI1039_SNR_40.rec
+ LAB: HE HAS NEVER HIMSELF DONE ANYTHING FOR WHICH TO  BE HATED WHICH OF US HAS 
+ REC: HE HAS NEVER HIMSELF THAT EVENING  FOR WHICH THE HE IT    WHICH OF US HAS 
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:50 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_40.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=66.67, Acc=66.67 [H=10, D=0, S=5, I=0, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI1039_SNR_5.rec 
+Aligned transcription: SI1039_SNR_5.lab vs SI1039_SNR_5.rec
+ LAB: HE   HAS  NEVER HIMSELF DONE ANYTHING FOR WHICH TO BE  HATED WHICH OF US  HAS 
+ REC: HAVE HAVE A     HIMSELF                         TO HAD HAVE  WOULD IF THE HAD 
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:50 2016
+  Ref : MATLABWord.mlf
+  Rec : SI1039_SNR_5.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=13.33, Acc=13.33 [H=2, D=4, S=9, I=0, N=15]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016.rec 
+Aligned transcription: SI2016.lab vs SI2016.rec
+ LAB: HEAVE ON    THOSE ROPES THE BOAT'S COME   UNSTUCK 
+ REC: HE    DON'T THOSE ROPES THE BOAT'S COMMON STUCK   
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:50 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=50.00, Acc=50.00 [H=4, D=0, S=4, I=0, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_0.rec 
+Aligned transcription: SI2016_SNR_0.lab vs SI2016_SNR_0.rec
+ LAB: HEAVE ON  THOSE ROPES THE BOAT'S COME UNSTUCK 
+ REC: AND   THE HAD   THAT  THE             AN      
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:50 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_0.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=12.50, Acc=12.50 [H=1, D=2, S=5, I=0, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_1.rec 
+Aligned transcription: SI2016_SNR_1.lab vs SI2016_SNR_1.rec
+ LAB: HEAVE ON THOSE ROPES THE BOAT'S COME UNSTUCK 
+ REC:          AND   THAT  THE AN     TO   AN      
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:50 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_1.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=12.50, Acc=12.50 [H=1, D=2, S=5, I=0, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_10.rec 
+Aligned transcription: SI2016_SNR_10.lab vs SI2016_SNR_10.rec
+ LAB: HEAVE ON THOSE ROPES THE         BOAT'S COME   UNSTUCK 
+ REC:       HE DON'T AS    THE IF INTO IF     COMMON TO      
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:50 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_10.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=12.50, Acc=-12.50 [H=1, D=1, S=6, I=2, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_15.rec 
+Aligned transcription: SI2016_SNR_15.lab vs SI2016_SNR_15.rec
+ LAB:       HEAVE ON THOSE ROPES THE BOAT'S COME   UNSTUCK 
+ REC: HE TO AND   IS ROUGH OF    OH  IF     COMMON STYLE   
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:51 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_15.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=0.00, Acc=-25.00 [H=0, D=0, S=8, I=2, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_2.rec 
+Aligned transcription: SI2016_SNR_2.lab vs SI2016_SNR_2.rec
+ LAB: HEAVE ON THOSE ROPES THE BOAT'S COME UNSTUCK 
+ REC:                AND   THE HAS    THE  AN      
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:51 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_2.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=12.50, Acc=12.50 [H=1, D=3, S=4, I=0, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_20.rec 
+Aligned transcription: SI2016_SNR_20.lab vs SI2016_SNR_20.rec
+ LAB:    HEAVE ON  THOSE ROPES THE BOAT'S COME   UNSTUCK 
+ REC: HE TO    AND IS    ROAD  THE BOTH   COMMON STAFF   
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:51 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_20.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=12.50, Acc=0.00 [H=1, D=0, S=7, I=1, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_30.rec 
+Aligned transcription: SI2016_SNR_30.lab vs SI2016_SNR_30.rec
+ LAB: HEAVE ON    THOSE ROPES THE BOAT'S COME   UNSTUCK 
+ REC: HE    DON'T US    ROPES THE VOTES  COMMON STYLE   
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:51 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_30.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=25.00, Acc=25.00 [H=2, D=0, S=6, I=0, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_40.rec 
+Aligned transcription: SI2016_SNR_40.lab vs SI2016_SNR_40.rec
+ LAB: HEAVE ON   THOSE ROPES THE BOAT'S COME   UNSTUCK 
+ REC: HE    TOWN THOSE ROPES THE BOAT'S COMMON STAFF   
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:51 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_40.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=50.00, Acc=50.00 [H=4, D=0, S=4, I=0, N=8]
+===================================================================
+HResults -A -T 1 -t -c -I MATLABWord.mlf /Users/thrakar9/Desktop/thesis/HTK_TIMIT_WRD/tiedlist SI2016_SNR_5.rec 
+Aligned transcription: SI2016_SNR_5.lab vs SI2016_SNR_5.rec
+ LAB: HEAVE ON THOSE ROPES THE     BOAT'S COME UNSTUCK 
+ REC: HE    TO HAD   HEAD  THOUGHT HAD    IF   TO      
+====================== HTK Results Analysis =======================
+  Date: Sat Feb 20 20:22:51 2016
+  Ref : MATLABWord.mlf
+  Rec : SI2016_SNR_5.rec
+------------------------ Overall Results --------------------------
+SENT: %Correct=0.00 [H=0, S=1, N=1]
+WORD: %Corr=0.00, Acc=0.00 [H=0, D=0, S=8, I=0, N=8]
+===================================================================
